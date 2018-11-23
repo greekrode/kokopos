@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\Category;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class CategoryController extends Controller
 {
@@ -13,7 +15,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('pages.category.index');
+        $categories = Category::all();
+        return view('pages.category.index')->with('categories', $categories);
     }
 
     /**
@@ -23,7 +26,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.category.create');
     }
 
     /**
