@@ -20,7 +20,18 @@ $this->post('login', 'Auth\LoginController@login');
 $this->post('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('/dashboard', 'HomeController@index')->name('dashboard');
-    Route::resource('category','CategoryController');
+    Route::get('/', 'HomeController@index')->name('dashboard');
+
+    Route::resource('category','CategoryController', [
+        'names' => [
+            'index'     => 'category',
+            'store'     => 'category.new',
+            'edit'      => 'category.edit',
+            'show'      => 'category.show',
+            'create'    => 'category.create',
+            'update'    => 'category.update',
+            'destroy'   => 'category.destroy'
+        ]
+    ]);
 });
 

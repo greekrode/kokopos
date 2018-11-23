@@ -24,6 +24,10 @@
 <script src="{{ asset('libs/flot/jquery.flot.crosshair.js') }}"></script>
 <script src="{{ asset('libs/flot.tooltip/js/jquery.flot.tooltip.min.js') }}"></script>
 <script src="{{ asset('js/pages/chart/chart-page-init.js') }}"></script>
+<!-- Data tables -->
+<script src="{{ asset('extra-libs/multicheck/datatable-checkbox-init.js') }}"></script>
+<script src="{{ asset('extra-libs/multicheck/jquery.multicheck.js') }}"></script>
+<script src="{{ asset('extra-libs/DataTables/datatables.min.js') }}"></script>
 <!-- This page plugin js -->
 <!-- ============================================================== -->
 <script>
@@ -42,4 +46,8 @@
         $("#recoverform").hide();
         $("#loginform").fadeIn();
     });
+    /****************************************
+     *       Basic Table                   *
+     ****************************************/
+    $('#zero_config').DataTable();
 </script>
