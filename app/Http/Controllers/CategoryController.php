@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Model\Category;
 use Illuminate\Http\Request;
-use Illuminate\View\View;
+use Illuminate\Support\Facades\Validator;
 
 class CategoryController extends Controller
 {
@@ -37,7 +37,22 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'name' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('category/create')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $category = new Category([
+            'name' => $request->get('name')
+        ]);
+        $category->save();
+
+        return redirect()->action('CategoryController@index')->with('success', sprintf('%s', 'Category '.$request->get('name').' has been added!'));
     }
 
     /**
@@ -82,6 +97,8 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = Category::find($id);
+        $category->delete();
+        return redirect()->action('CategoryController@index')->with('success', sprintf('%s', 'Category '.$category->name.' has been deleted!'));
     }
 }

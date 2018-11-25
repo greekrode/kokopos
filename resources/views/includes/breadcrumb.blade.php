@@ -4,7 +4,7 @@
 <div class="page-breadcrumb">
     <div class="row">
         <div class="col-12 d-flex no-block align-items-center">
-            <h4 class="page-title">{{ ucfirst(substr(Request::route()->getName(), 0, strpos(Request::route()->getName(), '.'))).' '.substr(Request::route()->getName(), strpos(Request::route()->getName(), '.')+1) ?? 'Dashboard'}}</h4>
+            <h4 class="page-title">{{ strpos(Request::route()->getName(), '.')) ? ucfirst(substr(Request::route()->getName(), 0, strpos(Request::route()->getName(), '.'))).' '. ucfirst(substr(Request::route()->getName(), strpos(Request::route()->getName(), '.')+1)) : ucfirst(Request::route()->getName() }}</h4>
             <div class="ml-auto text-right">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">

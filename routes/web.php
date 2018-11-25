@@ -25,7 +25,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('category','CategoryController', [
         'names' => [
             'index'     => 'category',
-            'store'     => 'category.new',
+            'store'     => 'category.store',
             'edit'      => 'category.edit',
             'show'      => 'category.show',
             'create'    => 'category.create',
