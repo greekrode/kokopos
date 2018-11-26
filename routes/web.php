@@ -33,5 +33,17 @@ Route::group(['middleware' => ['auth']], function () {
             'destroy'   => 'category.destroy'
         ]
     ]);
+
+    Route::resource('product', 'ProductController',[
+        'names' => [
+            'index'     => 'product',
+            'store'     => 'product.store',
+            'edit'      => 'product.edit',
+            'show'      => 'product.show',
+            'create'    => 'product.create',
+            'update'    => 'product.update',
+            'destroy'   => 'product.destroy'
+        ]
+    ]);
 });
 

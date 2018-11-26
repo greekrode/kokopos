@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Model\Category;
+use App\Model\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class CategoryController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +16,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
-        return view('pages.category.index')->with('categories', $categories);
+        $products = Product::all();
+        return view('pages.product.index')->with('products', $products);
     }
 
     /**
@@ -26,7 +27,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('pages.category.create');
+        $categories = Category::all();
+        return view('pages.product.create')->with('categories', $categories);
     }
 
     /**
@@ -38,7 +40,11 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required'
+            'name' => 'required',
+            'capital_price' => 'required|integer',
+            'selling_price' => 'required|integer',
+            'stock' => 'required|integer',
+            'category_id' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -47,12 +53,23 @@ class CategoryController extends Controller
                 ->withInput();
         }
 
-        $category = new Category([
-            'name' => $request->get('name')
-        ]);
-        $category->save();
+        $image = $request->file('image');
+        $extension = $image->getClientOriginalExtension();
+        \Storage::disk('public')->put($image->getFilename().'.'.$extension, \File::get($image));
 
-        return redirect()->action('CategoryController@index')->with('success', sprintf('%s', 'Category '.$request->get('name').' has been added!'));
+        $product = new Product([
+            'name' => $request->name,
+            'capital_price' => $request->capital_price,
+            'selling_price' => $request->selling_price,
+            'stock' => $request->stock,
+            'mime' => $image->getClientMimeType(),
+            'original_image' => $image->getClientOriginalName(),
+            'image' => $image->getFilename().'.'.$extension,
+            'category_id' => $request->category_id
+        ]);
+        $product->save();
+
+        return redirect()->action('ProductController@index')->with('success', sprintf('%s', 'Product '.$request->name.' has been added!'));
     }
 
     /**
@@ -74,9 +91,7 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $category = Category::find($id);
-
-        return view('pages.category.edit')->with('category', $category);;
+        //
     }
 
     /**
@@ -88,21 +103,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required'
-        ]);
-
-        if ($validator->fails()) {
-            return redirect('category/create')
-                ->withErrors($validator)
-                ->withInput();
-        }
-
-        $category = Category::find($id);
-        $category->name = $request->get('name');
-        $category->save();
-
-        return redirect()->action('CategoryController@index')->with('success', sprintf('%s', 'Category '.$id.' has been updated!'));
+        //
     }
 
     /**
@@ -113,8 +114,6 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $category = Category::find($id);
-        $category->delete();
-        return redirect()->action('CategoryController@index')->with('success', sprintf('%s', 'Category '.$category->name.' has been deleted!'));
+        //
     }
 }
