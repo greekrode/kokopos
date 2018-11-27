@@ -15,8 +15,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
-        return view('pages.category.index')->with('categories', $categories);
+        return view('pages.category.index');
     }
 
     /**
@@ -114,7 +113,11 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         $category = Category::find($id);
-        $category->delete();
-        return redirect()->action('CategoryController@index')->with('success', sprintf('%s', 'Category '.$category->name.' has been deleted!'));
+        try {
+            $category->delete();
+            return redirect()->action('CategoryController@index')->with('success', sprintf('%s', 'Category '.$category->name.' has been deleted!'));
+        } catch (\Exception $e) {
+            return redirect()->action('CategoryController@index')->with('fail', sprintf('%s', 'Category '.$category->name.' can not be deleted!'));
+        }
     }
 }

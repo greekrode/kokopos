@@ -45,5 +45,8 @@ Route::group(['middleware' => ['auth']], function () {
             'destroy'   => 'product.destroy'
         ]
     ]);
+
+    Route::get('datatable/category', 'DatatableController@category')->name('datatable.category');
+    Route::get('datatable/product', 'DatatableController@product')->name('datatable.product');
 });
 

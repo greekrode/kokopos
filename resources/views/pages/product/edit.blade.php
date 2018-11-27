@@ -13,16 +13,16 @@
         <div class="row">
             <div class="col-md-8 mx-auto">
                 <div class="card">
-                    <form class="form-horizontal" method="POST" action="{{ route('category.update', $category->id)  }}">
+                    <form class="form-horizontal" method="POST" action="{{ route('product.update', $product->id)  }}">
                         @method('PATCH')
                         @csrf
                         <div class="card-body">
-                            <h4 class="card-title">New category</h4>
+                            <h4 class="card-title">Edit product</h4>
                             <div class="form-group row">
                                 @csrf
                                 <label for="name" class="col-sm-3 text-right control-label col-form-label">Name</label>
                                 <div class="col-sm-9">
-                                    <input type="text" id="name" name="name" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" placeholder="Category Name Here" value="{{ $category->name  }}" autofocus>
+                                    <input type="text" id="name" name="name" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" value="{{ $product->name  }}" autofocus>
                                     @if ($errors->has('name'))
                                         <div class="invalid-feedback">
                                             {{ $errors->first('name') }}

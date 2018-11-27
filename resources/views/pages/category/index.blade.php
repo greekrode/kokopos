@@ -21,34 +21,21 @@
                                 <div class="alert alert-success" role="alert">
                                     {{ session('success') }}
                                 </div>
+                            @elseif (session('fail'))
+                                <div class="alert alert-danger" role="alert">
+                                    {{ session('fail') }}
+                                </div>
                             @endif
-                            <table id="zero_config" class="table table-striped table-bordered">
-                                <thead>
-                                <tr>
-                                    <th class="font-22 font-bold">ID</th>
-                                    <th class="font-22 font-bold">Name</th>
-                                    <th colspan="2" class="font-22 font-bold">Action</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($categories as $cat)
+                            <table id="zero_config" class="table table-bordered">
+                                <thead class="thead-dark">
                                     <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $cat->name }}</td>
-                                        <td><a href="{{ route('category.edit',$cat->id)}}" class="btn btn-primary">Edit</a></td>
-                                        <td>
-                                            <form action="{{ route('category.destroy', $cat->id)}}" method="post">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button class="btn btn-danger" type="submit">Delete</button>
-                                            </form>
-                                        </td>
+                                        <th class="font-22 font-bold">ID</th>
+                                        <th class="font-22 font-bold">Name</th>
+                                        <th class="font-22 font-bold">Action</th>
                                     </tr>
-                                @endforeach
-                                </tbody>
+                                </thead>
                             </table>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -68,3 +55,41 @@
     <!-- End Container fluid  -->
     <!-- ============================================================== -->
 @endsection
+
+@push('scripts')
+    <script>
+        var table = $('#zero_config').DataTable({
+            responsive: true,
+            processing: true,
+            serverSide: true,
+            ajax: '{!! route('datatable.category') !!}',
+            columns: [
+                {data: 'rownum', name: 'rownum', searchable: false},
+                { data: 'name', name: 'name' },
+                {data: 'action', name: 'action', orderable: false, searchable: false}
+            ]
+        });
+
+        $('#zero_config').on('click', '.btn-delete[data-remote]', function (e) {
+            e.preventDefault();
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            var url = $(this).data('remote');
+            // confirm then
+            if (confirm('Are you sure you want to delete this?')) {
+                $.ajax({
+                    url: url,
+                    type: 'DELETE',
+                    dataType: 'json',
+                    data: {method: '_DELETE', submit: true}
+                }).always(function (data) {
+                    $('#zero_config').DataTable().draw(false);
+                });
+            }else
+                alert("You have cancelled!");
+        });
+    </script>
+@endpush

@@ -21,41 +21,24 @@
                                 <div class="alert alert-success" role="alert">
                                     {{ session('success') }}
                                 </div>
+                            @elseif (session('fail'))
+                                <div class="alert alert-danger" role="alert">
+                                    {{ session('fail') }}
+                                </div>
                             @endif
                             <table id="zero_config" class="table table-bordered">
                                 <thead class="thead-dark">
-                                <tr>
-                                    <th class="font-22 font-bold">ID</th>
-                                    <th class="font-22 font-bold">Name</th>
-                                    <th class="font-22 font-bold">Capital Price</th>
-                                    <th class="font-22 font-bold">Selling Price</th>
-                                    <th class="font-22 font-bold">Stock</th>
-                                    <th class="font-22 font-bold">Image</th>
-                                    <th class="font-22 font-bold">Category</th>
-                                    <th colspan="2" class="font-22 font-bold">Action</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($products as $product)
                                     <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $product->name }}</td>
-                                        <td>{{ $product->capital_price }}</td>
-                                        <td>{{ $product->selling_price }}</td>
-                                        <td>{{ $product->stock }}</td>
-                                        <td><img src="{{ url('uploads/'.$product->image) }}" alt="{{ $product->name }}" class="img-fluid" style="width:20% !important;"></td>
-                                        <td>{{ $product->category->name }}</td>
-                                        <td><a href="{{ route('product.edit', $product->id)}}" class="btn btn-primary">Edit</a></td>
-                                        <td>
-                                            <form action="{{ route('product.destroy', $product->id)}}" method="post">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button class="btn btn-danger" type="submit">Delete</button>
-                                            </form>
-                                        </td>
+                                        <th class="font-22 font-bold">ID</th>
+                                        <th class="font-22 font-bold">Name</th>
+                                        <th class="font-22 font-bold">Capital Price</th>
+                                        <th class="font-22 font-bold">Selling Price</th>
+                                        <th class="font-22 font-bold">Stock</th>
+                                        <th class="font-22 font-bold">Image</th>
+                                        <th class="font-22 font-bold">Category</th>
+                                        <th class="font-22 font-bold">Action</th>
                                     </tr>
-                                @endforeach
-                                </tbody>
+                                </thead>
                             </table>
                         </div>
 
@@ -78,3 +61,51 @@
     <!-- End Container fluid  -->
     <!-- ============================================================== -->
 @endsection
+
+@push('scripts')
+    <script>
+        var table = $('#zero_config').DataTable({
+            responsive: true,
+            processing: true,
+            serverSide: true,
+            ajax: '{!! route('datatable.product') !!}',
+            columns: [
+                { data: 'rownum', name: 'rownum', searchable: false},
+                { data: 'name', name: 'name' },
+                { data: 'capital_price', name: 'capital_price' },
+                { data: 'selling_price', name: 'selling_price' },
+                { data: 'stock', name: 'stock' },
+                {
+                    data: 'image', name: 'image',
+                    render: function (data, type, row) {
+                        return "<img src=\"/uploads/" + data + "\" width=\"150\"/>";
+                    }
+                },
+                { data: 'categories_name', name: 'category' },
+                { data: 'action', name: 'action', orderable: false, searchable: false }
+            ]
+        });
+
+        $('#zero_config').on('click', '.btn-delete[data-remote]', function (e) {
+            e.preventDefault();
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            var url = $(this).data('remote');
+            // confirm then
+            if (confirm('Are you sure you want to delete this?')) {
+                $.ajax({
+                    url: url,
+                    type: 'DELETE',
+                    dataType: 'json',
+                    data: {method: '_DELETE', submit: true}
+                }).always(function (data) {
+                    $('#zero_config').DataTable().draw(false);
+                });
+            }else
+                alert("You have cancelled!");
+        });
+    </script>
+@endpush
