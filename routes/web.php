@@ -46,7 +46,20 @@ Route::group(['middleware' => ['auth']], function () {
         ]
     ]);
 
+    Route::resource('sales', 'SaleController',[
+        'names' => [
+            'index'     => 'sales',
+            'store'     => 'sales.store',
+            'edit'      => 'sales.edit',
+            'show'      => 'sales.show',
+            'create'    => 'sales.create',
+            'update'    => 'sales.update',
+            'destroy'   => 'sales.destroy'
+        ]
+    ]);
+
     Route::get('datatable/category', 'DatatableController@category')->name('datatable.category');
     Route::get('datatable/product', 'DatatableController@product')->name('datatable.product');
+    Route::get('datatable/sales', 'DatatableController@sales')->name('datatable.sales');
 });
 

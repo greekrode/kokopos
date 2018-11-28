@@ -9,11 +9,8 @@
 namespace App\Http\Controllers;
 
 use App\Model\Category;
-use App\Model\Product;
 use Illuminate\Support\Facades\DB;
-use Symfony\Component\VarDumper\Cloner\Data;
 use Yajra\Datatables\Datatables;
-use Yajra\DataTables\Services\DataTable;
 
 class DatatableController extends Controller
 {
@@ -50,6 +47,24 @@ class DatatableController extends Controller
         return Datatables::of($products)
             ->addColumn('action', function ($products) {
                 return view('pages.product.action', compact('products'))->render();
+            })
+            ->make(true);
+    }
+
+    public function sales()
+    {
+        DB::statement(DB::raw('set @rownum=0'));
+        $sales = DB::table('sales')
+            ->select([
+                DB::raw('@rownum  := @rownum  + 1 AS rownum'),
+                'id',
+                'number',
+                'total'
+            ]);
+
+        return Datatables::of($sales)
+            ->addColumn('action', function ($sales) {
+                return view('pages.sales.action', compact('sales'))->render();
             })
             ->make(true);
     }
