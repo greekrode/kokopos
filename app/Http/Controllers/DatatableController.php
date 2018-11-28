@@ -51,10 +51,6 @@ class DatatableController extends Controller
             ->addColumn('action', function ($products) {
                 return view('pages.product.action', compact('products'))->render();
             })
-//            ->addColumn('image', function ($products) {
-//                $url=asset("uploads/$products->image");
-//                return '<img src='.$url.' border="0" width="40" class="img-rounded" align="center" />';
-//            })
             ->make(true);
     }
 }
