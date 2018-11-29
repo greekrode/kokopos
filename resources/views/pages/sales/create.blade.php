@@ -91,29 +91,25 @@
             }
         });
 
+        var table = $('#zero_config').DataTable();
+        var counter = 1;
+
+
+        function numberWithCommas(x) {
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        }
+
         $('#products').on('select2:select', function(e) {
            var products = e.params.data;
-            $('#zero_config').DataTable({
-                responsive: true,
-                processing: true,
-                serverSide: true,
-                ajax: {
-                    url: '{{ URL::to('/datatable/sales/products')  }}/' + products.id,
-                    type: 'GET',
-                },
-                columns: [
-                    { data: 'rownum', name: 'rownum', searchable: false},
-                    { data: 'name', name: 'number' },
-                    { data: 'selling_price', name: 'price' },
-                    {
-                        data: 'image', name: 'image',
-                        render: function (data, type, row) {
-                            return "<img src=\"/uploads/" + data + "\" width=\"150\"/>";
-                        }
-                    },
-                    // { data: 'action', name: 'action', orderable: false, searchable: false }
-                ]
-            });
+           var imgTag = "<img src=\"/uploads/" + products.image + "\" width=\"150\"/>";
+           table.row.add([
+               counter,
+               products.text,
+               'Rp ' + numberWithCommas(products.price),
+               imgTag
+           ]).draw(false);
+
+           counter++;
         });
     </script>
 
