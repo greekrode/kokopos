@@ -61,5 +61,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('datatable/category', 'DatatableController@category')->name('datatable.category');
     Route::get('datatable/product', 'DatatableController@product')->name('datatable.product');
     Route::get('datatable/sales', 'DatatableController@sales')->name('datatable.sales');
+    Route::get('datatable/sales/products/{id}', 'DatatableController@salesProducts')->name('datatable.sales.products');
+
+    Route::get('search/product', 'SearchController@product')->name('search.product');
 });
 

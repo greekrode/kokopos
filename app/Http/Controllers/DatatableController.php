@@ -9,6 +9,7 @@
 namespace App\Http\Controllers;
 
 use App\Model\Category;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Yajra\Datatables\Datatables;
 
@@ -66,6 +67,25 @@ class DatatableController extends Controller
             ->addColumn('action', function ($sales) {
                 return view('pages.sales.action', compact('sales'))->render();
             })
+            ->make(true);
+    }
+
+    public function salesProducts($id)
+    {
+        DB::statement(DB::raw('set @rownum=0'));
+        $sales = DB::table('products')
+            ->select([
+                DB::raw('@rownum  := @rownum  + 1 AS rownum'),
+                'id',
+                'name',
+                'selling_price',
+                'image'
+            ])->where('id', '=', $id);
+
+        return Datatables::of($sales)
+//            ->addColumn('action', function ($sales) {
+//                return view('pages.sales.action', compact('sales'))->render();
+//            })
             ->make(true);
     }
 }

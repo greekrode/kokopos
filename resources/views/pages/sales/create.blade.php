@@ -13,62 +13,46 @@
         <div class="row">
             <div class="col-md-8 mx-auto">
                 <div class="card">
-                    <form class="form-horizontal" method="POST" action="{{ route('sales.store')  }}" enctype="multipart/form-data">
-                        <div class="card-body">
-                            @csrf
-                            <h4 class="card-title">New Sales</h4>
-                            <div class="form-group row">
-                                <label for="number" class="col-sm-3 text-right control-label col-form-label">Number</label>
-                                <div class="col-sm-3">
-                                    <input type="text" id="number" name="number" class="form-control {{ $errors->has('number') ? 'is-invalid' : '' }}" placeholder="Product Name" autofocus>
-                                    @if ($errors->has('number'))
-                                        <div class="invalid-feedback">
-                                            {{ $errors->first('number') }}
-                                        </div>
-                                    @endif
-                                </div>
-                            </div>
-
-                            {{--<div class="form-group row">--}}
-                                {{--<label for="capital_price" class="col-sm-3 text-right control-label col-form-label">Total</label>--}}
-                                {{--<div class="col-sm-9">--}}
-                                    {{--<div class="input-group">--}}
-                                        {{--<div class="input-group-prepend">--}}
-                                            {{--<span class="input-group-text" id="basic-addon1">Rp</span>--}}
-                                        {{--</div>--}}
-                                        {{--<input type="text" id="capital_price" name="capital_price" class="form-control" placeholder="Capital Price" aria-label="Capital Price" aria-describedby="basic-addon1">--}}
-                                        {{--@if ($errors->has('capital_price'))--}}
-                                            {{--<div class="invalid-feedback">--}}
-                                                {{--{{ $errors->first('capital_price') }}--}}
-                                            {{--</div>--}}
-                                        {{--@endif--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-
-                            <div class="form-group row">
-                                @foreach($products as $product)
-                                    <div class="col-sm-4">
-                                        <div class="card" style="width: 18rem;">
-                                            <img class="card-img-top" src="{{ url('/uploads/'.$product->image) }}" alt="{{ $product->name }}" style="object-fit: fill" width="640px" height="200px">
-                                            <div class="card-body">
-                                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
-
-                        </div>
-
-                        <div class="border-top">
-                            <div class="card-body text-right">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                    <div class="card-body">
+                        <h4 class="card-title">Products</h4>
+                        <div class="form-group row">
+                            <div class="col-md-12">
+                                <select id="products" name="product_list[]" class="form-control"></select>
+                                </select>
                             </div>
                         </div>
-                    </form>
+                    </div>
+
+                    <div class="card-body">
+                        <h5 class="card-title">Product List</h5>
+                        <div class="form-group row">
+                            <div class="table-responsive col-md-12">
+                                <table id="zero_config" class="table table-bordered">
+                                    <thead class="thead-dark">
+                                    <tr>
+                                        <th class="font-22 font-bold">ID</th>
+                                        <th class="font-22 font-bold">Name</th>
+                                        <th class="font-22 font-bold">Price</th>
+                                        <th class="font-22 font-bold">Image</th>
+                                    </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+
+            <div class="col-md-4 mx-auto">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <h4>Test</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- ============================================================== -->
         <!-- End Page Content -->
         <!-- ============================================================== -->
@@ -84,3 +68,60 @@
     <!-- End Container fluid  -->
     <!-- ============================================================== -->
 @endsection
+
+@push('scripts')
+    <script type="text/javascript">
+        $('#products').select2({
+            placeholder: "Choose products...",
+            minimumInputLength: 2,
+            ajax: {
+                url: '{{ route('search.product') }}',
+                dataType: 'json',
+                data: function (params) {
+                    return {
+                        q: $.trim(params.term)
+                    };
+                },
+                processResults: function (data) {
+                    return {
+                        results: data
+                    };
+                },
+                cache: true
+            }
+        });
+
+        $('#products').on('select2:select', function(e) {
+           var products = e.params.data;
+            $('#zero_config').DataTable({
+                responsive: true,
+                processing: true,
+                serverSide: true,
+                ajax: {
+                    url: '{{ URL::to('/datatable/sales/products')  }}/' + products.id,
+                    type: 'GET',
+                },
+                columns: [
+                    { data: 'rownum', name: 'rownum', searchable: false},
+                    { data: 'name', name: 'number' },
+                    { data: 'selling_price', name: 'price' },
+                    {
+                        data: 'image', name: 'image',
+                        render: function (data, type, row) {
+                            return "<img src=\"/uploads/" + data + "\" width=\"150\"/>";
+                        }
+                    },
+                    // { data: 'action', name: 'action', orderable: false, searchable: false }
+                ]
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    </script>
+@endpush

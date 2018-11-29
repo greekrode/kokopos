@@ -39,6 +39,8 @@
 <script src="{{ asset('libs/jquery-minicolors/jquery.minicolors.min.js') }}"></script>
 <script src="{{ asset('libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"></script>
 <script src="{{ asset('libs/quill/dist/quill.min.js') }}"></script>
+<script src="{{ asset('js/ajaxlivesearch.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 <!-- ============================================================== -->
 <script>
 
