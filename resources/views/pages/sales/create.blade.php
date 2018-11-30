@@ -30,10 +30,13 @@
                                 <table id="zero_config" class="table table-bordered">
                                     <thead class="thead-dark">
                                     <tr>
-                                        <th class="font-22 font-bold">ID</th>
-                                        <th class="font-22 font-bold">Name</th>
-                                        <th class="font-22 font-bold">Price</th>
-                                        <th class="font-22 font-bold">Image</th>
+                                        <th class="font-22 font-bold" width="10%">ID</th>
+                                        <th class="font-22 font-bold" width="25%">Name</th>
+                                        <th class="font-22 font-bold" width="20%">Image</th>
+                                        <th class="font-22 font-bold" width="15%">Price</th>
+                                        <th class="font-22 font-bold" width="15%">Quantity</th>
+                                        <th class="font-22 font-bold" width="15%">Subtotal</th>
+                                        <th style="display: none">Item ID</th>
                                     </tr>
                                     </thead>
                                 </table>
@@ -99,17 +102,64 @@
             return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
         }
 
+        function calculate(id) {
+            var qty = parseInt($('#qty' + id).val());
+            var price = parseInt($('#price' + id).text().replace(/[^0-9]/g,'').toString());
+
+            var subtotal = qty * price;
+            console.log(subtotal);
+            $('#subtotal'+ id).text('Rp ' + numberWithCommas(subtotal));
+        }
+
         $('#products').on('select2:select', function(e) {
+            $('#products').empty();
            var products = e.params.data;
            var imgTag = "<img src=\"/uploads/" + products.image + "\" width=\"150\"/>";
-           table.row.add([
-               counter,
-               products.text,
-               'Rp ' + numberWithCommas(products.price),
-               imgTag
-           ]).draw(false);
+           var data = table.rows().data();
+           var dataCheck = false;
 
-           counter++;
+           if (table.page.info().recordsDisplay === 0) {
+               table.row.add([
+                   counter,
+                   products.text,
+                   imgTag,
+                   "<span id=\"price" + counter + "\">" + 'Rp ' + numberWithCommas(products.price) +"</span>",
+                   "<input type='number' name=\"qty" + counter + "\" id=\"qty" + counter+ "\" value='1' class='form-control col-10' onchange=\"calculate(" + counter + ");\">",
+                   "<span id=\"subtotal" + counter + "\">" + 'Rp ' + numberWithCommas(products.price) +"</span>",
+                   products.product_id
+               ]).draw(false);
+               table.column(6).visible(false).draw(false);
+           } else {
+               var itemIdArray = [];
+               table.rows().every(function (rowIdx, tableLoop, rowLoop) {
+                   itemIdArray.push(data[rowIdx][6]);
+               });
+
+               if ($.inArray(products.product_id, itemIdArray) === -1) {
+                   dataCheck = false;
+               } else {
+                   dataCheck = true;
+                   var productCounterArray = [];
+                   table.rows().every(function (rowIdx, tableLoop, rowLoop) {
+                       productCounterArray.push(data[rowIdx][0]);
+                   });
+                   // table.cell(products.product_id - 1, 4).data("<input type='number' name=\"qty" + counter + "\" id=\"qty" + counter + "\" value='10' class='form-control col-10' onchange=\"calculate(" + counter + ");\">").draw();
+               }
+
+               if (dataCheck === false) {
+                   table.row.add([
+                       counter + 1,
+                       products.text,
+                       imgTag,
+                       "<span id=\"price" + counter + "\">" + 'Rp ' + numberWithCommas(products.price) + "</span>",
+                       "<input type='number' name=\"qty" + counter + "\" id=\"qty" + counter + "\" value='1' class='form-control col-10' onchange=\"calculate(" + counter + ");\">",
+                       "<span id=\"subtotal" + counter + "\">" + 'Rp ' + numberWithCommas(products.price) + "</span>",
+                       products.product_id
+                   ]).draw(false);
+
+                   counter++;
+               }
+           }
         });
     </script>
 

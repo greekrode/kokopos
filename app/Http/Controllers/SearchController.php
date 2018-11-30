@@ -18,9 +18,10 @@ class SearchController extends Controller
         $products = Product::search($term)->get();
 
         $formatted_products = [];
-
+        $loop = 1;
         foreach ($products as $product) {
-            $formatted_products[] = ['id' => $product->id, 'text' => $product->name, 'price' => $product->selling_price, 'image' => $product->image];
+            $formatted_products[] = ['id' => $loop, 'text' => $product->name, 'price' => $product->selling_price, 'image' => $product->image, 'product_id' => $product->id];
+            $loop ++;
         }
 
         return \Response::json($formatted_products);
