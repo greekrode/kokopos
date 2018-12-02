@@ -11,7 +11,7 @@
 <!-- Custom CSS -->
 <link href="{{ asset('libs/flot/css/float-chart.css') }}" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="{{ asset('extra-libs/multicheck/multicheck.css') }}">
-<link href="{{ asset('libs/datatables.net-bs4/css/dataTables.bootstrap4.css') }}" rel="stylesheet">
+{{--<link href="{{ asset('libs/datatables.net-bs4/css/dataTables.bootstrap4.css') }}" rel="stylesheet">--}}
 <link rel="stylesheet" type="text/css" href="{{ asset('libs/select2/dist/css/select2.min.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('libs/jquery-minicolors/jquery.minicolors.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('libs/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') }}">
@@ -19,6 +19,8 @@
 <link href="{{ asset('css/style.min.css') }}" rel="stylesheet">
 <linK href="{{ asset('css/ajaxlivesearch.css') }}" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/1.10.18/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="https://cdn.datatables.net/responsive/2.2.2/css/responsive.dataTables.min.css" rel="stylesheet">
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>

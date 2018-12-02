@@ -104,6 +104,9 @@
 
         function calculate(id) {
             var qty = parseInt($('#qty' + id).val());
+            if (qty < 0 || isNaN(qty)) {
+                var qty = 1;
+            }
             var price = parseInt($('#price' + id).text().replace(/[^0-9]/g,'').toString());
 
             var subtotal = qty * price;
@@ -113,19 +116,19 @@
 
         $('#products').on('select2:select', function(e) {
             $('#products').empty();
-           var products = e.params.data;
-           var imgTag = "<img src=\"/uploads/" + products.image + "\" width=\"150\"/>";
-           var data = table.rows().data();
-           var dataCheck = false;
+           let products = e.params.data;
+           let imgTag = "<img src=\"/uploads/" + products.image + "\" width=\"150\"/>";
+           let data = table.rows().data();
+           let dataCheck = false;
 
            if (table.page.info().recordsDisplay === 0) {
                table.row.add([
                    counter,
                    products.text,
                    imgTag,
-                   "<span id=\"price" + counter + "\">" + 'Rp ' + numberWithCommas(products.price) +"</span>",
-                   "<input type='number' name=\"qty" + counter + "\" id=\"qty" + counter+ "\" value='1' class='form-control col-10' onchange=\"calculate(" + counter + ");\">",
-                   "<span id=\"subtotal" + counter + "\">" + 'Rp ' + numberWithCommas(products.price) +"</span>",
+                   "<span id=\"price" + products.product_id + "\">" + 'Rp ' + numberWithCommas(products.price) +"</span>",
+                   "<input type='number' name=\"qty" + products.product_id + "\" id=\"qty" + products.product_id+ "\" value='1' class='form-control col-10' oninput=\"calculate(" + products.product_id + ");\">",
+                   "<span id=\"subtotal" + products.product_id + "\">" + 'Rp ' + numberWithCommas(products.price) +"</span>",
                    products.product_id
                ]).draw(false);
                table.column(6).visible(false).draw(false);
@@ -139,11 +142,14 @@
                    dataCheck = false;
                } else {
                    dataCheck = true;
-                   var productCounterArray = [];
                    table.rows().every(function (rowIdx, tableLoop, rowLoop) {
-                       productCounterArray.push(data[rowIdx][0]);
+                       if (data[rowIdx][6] === products.product_id) {
+                           let rowQty = parseInt(table.cell(rowIdx, 4).nodes().to$().find('input').val()) + 1;
+                           table.cell(rowIdx, 4).data("<input type='number' name=\"qty" + products.product_id + "\" id=\"qty" + products.product_id + "\" value=\"" + rowQty + "\"  class='form-control col-10' oninput=\"calculate(" + products.product_id + ");\">").draw();
+                           calculate(products.product_id);
+                       }
                    });
-                   // table.cell(products.product_id - 1, 4).data("<input type='number' name=\"qty" + counter + "\" id=\"qty" + counter + "\" value='10' class='form-control col-10' onchange=\"calculate(" + counter + ");\">").draw();
+
                }
 
                if (dataCheck === false) {
@@ -151,9 +157,9 @@
                        counter + 1,
                        products.text,
                        imgTag,
-                       "<span id=\"price" + counter + "\">" + 'Rp ' + numberWithCommas(products.price) + "</span>",
-                       "<input type='number' name=\"qty" + counter + "\" id=\"qty" + counter + "\" value='1' class='form-control col-10' onchange=\"calculate(" + counter + ");\">",
-                       "<span id=\"subtotal" + counter + "\">" + 'Rp ' + numberWithCommas(products.price) + "</span>",
+                       "<span id=\"price" + products.product_id + "\">" + 'Rp ' + numberWithCommas(products.price) + "</span>",
+                       "<input type='number' name=\"qty" + products.product_id + "\" id=\"qty" + products.product_id + "\" value='1' class='form-control col-10' onchange=\"calculate(" + products.product_id + ");\">",
+                       "<span id=\"subtotal" + products.product_id + "\">" + 'Rp ' + numberWithCommas(products.price) + "</span>",
                        products.product_id
                    ]).draw(false);
 
