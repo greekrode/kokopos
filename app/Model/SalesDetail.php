@@ -9,7 +9,7 @@ class SalesDetail extends Model
     protected $table = 'sales_details';
 
     protected $fillable = [
-        'sales_id', 'product_id'
+        'sales_id', 'product_id', 'qty'
     ];
 
     protected $guarded = [

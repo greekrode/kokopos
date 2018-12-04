@@ -47,36 +47,46 @@
             </div>
 
             <div class="col-md-4 mx-auto">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title">Sales Data</h4>
-                    </div>
-
-                    <div class="card-body">
-                        <h2 class="card-title float-left">Total</h2>
-                        <h2 class="float-right text-primary" id="sales-total">Rp <span id="sales-total-text">0</span></h2>
-                    </div>
-
-                    <div class="card-body">
-                        <h2 class="card-title float-left">Payment</h2>
-                        <h2 class="float-right text-warning" id="payment">Rp <span id="payment-text">0  </span> <button class="btn btn-xs btn-success" id="opener" style="margin-bottom: 5px;"><i class="mdi mdi-plus"></i></button></h2>
-                    </div>
-
-                    <div id="dialog" title="Payment Amount">
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1">Rp</span>
-                            </div>
-                            <input type="text" id="payment-amount" name="payment-amount" class="form-control" aria-label="Payment-Amount" aria-describedby="basic-addon1" placeholder="Payment Amount...">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Sales Data</h4>
                         </div>
-                        <p id="error-p" style="display: none" class="text-danger"><i class="mdi mdi-alert"></i><span id="error-message"></span></p>
-                    </div>
 
-                    <div class="card-body">
-                        <h2 class="card-title float-left">Change</h2>
-                        <h2 class="float-right text-danger" id="change">Rp <span id="change-text">0</span></h2>
+                        <div class="card-body">
+                            <h2 class="card-title float-left">Invoice number</h2>
+                            <h4 class="float-right" style="margin-top: 8px">{{ $sales_no }}</h4>
+                            <input type="hidden" id="sales_no" name="sales_no" value="{{ $sales_no }}">
+                        </div>
+
+                        <div class="card-body">
+                            <h2 class="card-title float-left">Total</h2>
+                            <h2 class="float-right text-primary" id="sales-total">Rp <span id="sales-total-text">0</span></h2>
+                        </div>
+
+                        <div class="card-body">
+                            <h2 class="card-title float-left">Payment</h2>
+                            <h2 class="float-right text-warning" id="payment">Rp <span id="payment-text">0  </span> <button class="btn btn-xs btn-success" id="opener" style="margin-bottom: 5px;"><i class="mdi mdi-plus"></i></button></h2>
+                        </div>
+
+                        <div id="dialog" title="Payment Amount">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">Rp</span>
+                                </div>
+                                <input type="text" id="payment-amount" name="payment-amount" class="form-control" aria-label="Payment-Amount" aria-describedby="basic-addon1" placeholder="Payment Amount...">
+                            </div>
+                            <p id="error-p" style="display: none" class="text-danger"><i class="mdi mdi-alert"></i><span id="error-message"></span></p>
+                        </div>
+
+                        <div class="card-body">
+                            <h2 class="card-title float-left">Change</h2>
+                            <h2 class="float-right text-danger" id="change">Rp <span id="change-text">0</span></h2>
+                        </div>
+
+                        <div class="card-body">
+                            <button type="submit" id="submit" class="btn btn-md btn-primary col-sm-12">Submit</button>
+                        </div>
                     </div>
-                </div>
             </div>
         </div>
         <!-- ============================================================== -->
@@ -206,6 +216,40 @@
                });
                $('#sales-total-text').text(numberWithCommas(subtotalValue));
            }
+        });
+
+        $('#submit').on('click', function() {
+            let allItemArray = [];
+            let data = table.rows().data();
+
+            table.rows().every(function (rowIdx, tableLoop, rowLoop) {
+                allItemArray.push({
+                    itemId: data[rowIdx][6],
+                    itemQty: table.cell(rowIdx, 4).nodes().to$().find('input').val()
+                });
+            });
+
+            if (allItemArray.length === 0) {
+                toastr.error('Please input product first!', 'Error!');
+            } else {
+                $.ajax({
+                    url: '{{ route('sales.store') }}',
+                    method: 'post',
+                    data: {
+                        itemData: allItemArray,
+                        salesTotal: $('#sales-total-text').html().replace(".",""),
+                        salesNumber: $('#sales_no').val()
+                    },
+                    success: function(response)
+                    {
+                        window.location = '/sales';
+                    },
+                    error: function()
+                    {
+                        // console.log('error');
+                    }
+                });
+            }
         });
     </script>
 

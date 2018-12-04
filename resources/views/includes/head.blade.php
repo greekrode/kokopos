@@ -22,6 +22,7 @@
 <link href="https://cdn.datatables.net/1.10.18/css/jquery.dataTables.min.css" rel="stylesheet">
 <link href="https://cdn.datatables.net/responsive/2.2.2/css/responsive.dataTables.min.css" rel="stylesheet">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link href="{{ asset('libs/toastr/build/toastr.min.css') }}" rel="stylesheet">
 
 <script src="{{ asset('libs/bootstrap/dist/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('libs/jquery/dist/jquery.min.js') }}"></script>

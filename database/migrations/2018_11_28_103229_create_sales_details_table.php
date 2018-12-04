@@ -19,6 +19,7 @@ class CreateSalesDetailsTable extends Migration
             $table->foreign('product_id')->references('id')->on('products');
             $table->unsignedInteger('sales_id');
             $table->foreign('sales_id')->references('id')->on('sales');
+            $table->integer('qty');
             $table->timestamps();
         });
     }

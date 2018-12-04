@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Model\Product;
+use App\Model\Sale;
+use App\Model\SalesDetail;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class SaleController extends Controller
@@ -25,7 +28,19 @@ class SaleController extends Controller
     public function create()
     {
         $products = Product::all();
-        return view('pages.sales.create')->with('products', $products);
+
+        $count = Sale::count();
+        $now = Carbon::now();
+        $count = sprintf('%03d', $count+1);
+        $year = $now->year;
+        $month = strtoupper($now->shortEnglishMonth);
+        $salesNumber = sprintf('%s/%s/%s/%s', 'INV', $count, $month, $year);
+
+        $data = [
+            'products' => $products,
+            'sales_no' => $salesNumber
+        ];
+        return view('pages.sales.create')->with($data);
     }
 
     /**
@@ -36,7 +51,26 @@ class SaleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $itemId = [];
+        $sales = new Sale();
+        $sales->number = $request->salesNumber;
+        $sales->total = $request->salesTotal;
+
+        if (!$sales->save()) {
+            return response('Error saving to Details', 500);
+        }
+
+        foreach ($request->itemData as $itemData) {
+            $salesDetails = new SalesDetail();
+            $salesDetails->sales_id = $sales->id;
+            $salesDetails->product_id = $itemData['itemId'];
+            $salesDetails->qty = $itemData['itemQty'];
+
+            if (!$salesDetails->save()) {
+                return response('Error saving to Sales Details', 500);
+            }
+        }
+        return redirect()->action('SaleController@index')->with('success', sprintf('%s', 'Sales number '.$request->salesNumber.' has been added!'));
     }
 
     /**
