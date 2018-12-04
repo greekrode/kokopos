@@ -66,7 +66,7 @@
             serverSide: true,
             ajax: '{!! route('datatable.sales') !!}',
             columns: [
-                { data: 'rownum', name: 'rownum', searchable: false},
+                { data: 'rownum', name: 'rownum', searchable: false },
                 { data: 'number', name: 'number' },
                 { data: 'total', name: 'total', render: $.fn.dataTable.render.number( '.', ',', 0, 'Rp ' )},
                 { data: 'action', name: 'action', orderable: false, searchable: false }

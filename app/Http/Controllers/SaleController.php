@@ -83,7 +83,15 @@ class SaleController extends Controller
      */
     public function show($id)
     {
-        //
+        $sales = Sale::find($id);
+        $salesDetails = SalesDetail::where('sales_id', $sales->id)->get();
+
+        $data = [
+            'sales' => $sales,
+            'salesDetails' => $salesDetails
+        ];
+
+        return view('pages.sales.show')->with($data);
     }
 
     /**

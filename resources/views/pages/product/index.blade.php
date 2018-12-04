@@ -70,7 +70,7 @@
             serverSide: true,
             ajax: '{!! route('datatable.product') !!}',
             columns: [
-                { data: 'rownum', name: 'rownum', searchable: false},
+                { data: 'rownum', name: 'rownum', searchable: false },
                 { data: 'name', name: 'name' },
                 { data: 'capital_price', name: 'capital_price', render: $.fn.dataTable.render.number( '.', ',', 0, 'Rp ' ) },
                 { data: 'selling_price', name: 'selling_price', render: $.fn.dataTable.render.number( '.', ',', 0, 'Rp ' ) },

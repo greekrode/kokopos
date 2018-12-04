@@ -1,3 +1,4 @@
+<a href="{{ route('sales.show', $sales->id) }}" class="btn btn-md btn-warning"><i class="mdi mdi-eye"></i> Show</a>
 <a href="{{ route('sales.edit', $sales->id) }}" class="btn btn-md btn-primary"><i class="mdi mdi-pencil"></i> Edit</a>
 <form action="{{ route('sales.destroy', $sales->id)}}" method="post" style="display: inline-block">
     @csrf
