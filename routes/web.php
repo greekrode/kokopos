@@ -65,5 +65,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('datatable/sales/products/{id}', 'DatatableController@salesProducts')->name('datatable.sales.products');
 
     Route::get('search/product', 'SearchController@product')->name('search.product');
+
+    Route::get('ajax/product', 'AjaxController@product')->name('ajax.product');
 });
 

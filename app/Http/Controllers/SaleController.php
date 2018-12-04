@@ -57,6 +57,7 @@ class SaleController extends Controller
 
         if (!$sales->save()) {
             \Session::flash('success', sprintf('%s', 'Sales number '.$request->salesNumber.' can not be created!'));
+            return response('failed');
         }
 
         foreach ($request->itemData as $itemData) {
@@ -65,9 +66,21 @@ class SaleController extends Controller
             $salesDetails->product_id = $itemData['itemId'];
             $salesDetails->qty = $itemData['itemQty'];
 
+            $product = Product::find($itemData['itemId']);
+            $product->stock -= $itemData['itemQty'];
+
+            if ($product->stock > 0) {
+                $product->save();
+            } else {
+                \Session::flash('fail', sprintf('%s', 'Product '.$product->name.' stock is not enough!'));
+                return response('failed');
+            }
+
             if (!$salesDetails->save()) {
                 \Session::flash('success', sprintf('%s', 'Sales number '.$request->salesNumber.' can not be created!'));
+                return response('failed');
             }
+
         }
 
         \Session::flash('success', sprintf('%s', 'Sales number '.$request->salesNumber.' has been added!'));

@@ -20,8 +20,10 @@ class SearchController extends Controller
         $formatted_products = [];
         $loop = 1;
         foreach ($products as $product) {
-            $formatted_products[] = ['id' => $loop, 'text' => $product->name, 'price' => $product->selling_price, 'image' => $product->image, 'product_id' => $product->id];
-            $loop ++;
+            if ($product->stock > 0) {
+                $formatted_products[] = ['id' => $loop, 'text' => $product->name, 'price' => $product->selling_price, 'image' => $product->image, 'product_id' => $product->id];
+                $loop ++;
+            }
         }
 
         return \Response::json($formatted_products);

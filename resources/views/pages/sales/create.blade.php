@@ -140,19 +140,34 @@
             if (qty < 0 || isNaN(qty)) {
                 qty = 1;
             }
-            var price = parseInt($('#price' + id).text().replace(/[^0-9]/g,'').toString());
 
-            var subtotal = qty * price;
-            $('#subtotal'+ id).text('Rp ' + numberWithCommas(subtotal));
+            $.ajax({
+                url: '{{ route('ajax.product') }}',
+                type: 'get',
+                data: {
+                    productId: id,
+                    qty: qty
+                },
+                success: function(response) {
+                    if (response === 'true') {
+                        var price = parseInt($('#price' + id).text().replace(/[^0-9]/g,'').toString());
 
-            var spanValues = [];
-            $( "span[id*='subtotal']" ).each(function(){
-                spanValues.push(parseInt($(this).html().substring(3).replace('.', "")));
+                        var subtotal = qty * price;
+                        $('#subtotal'+ id).text('Rp ' + numberWithCommas(subtotal));
+
+                        var spanValues = [];
+                        $( "span[id*='subtotal']" ).each(function(){
+                            spanValues.push(parseInt($(this).html().substring(3).replace('.', "")));
+                        });
+                        var subtotalValue = spanValues.reduce(function (a, b) {
+                            return a + b;
+                        });
+                        $('#sales-total-text').text(numberWithCommas(subtotalValue));
+                    } else {
+                        toastr.error('Product stock has only ' + response + ' left!', 'Error!');
+                    }
+                }
             });
-            var subtotalValue = spanValues.reduce(function (a, b) {
-                return a + b;
-            });
-            $('#sales-total-text').text(numberWithCommas(subtotalValue));
         }
 
         $('#products').on('select2:select', function(e) {
@@ -243,10 +258,6 @@
                     success: function(response)
                     {
                         window.location = '/sales';
-                    },
-                    error: function()
-                    {
-                        // console.log('error');
                     }
                 });
             }
