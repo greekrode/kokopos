@@ -9,8 +9,9 @@
 namespace App\Http\Controllers;
 
 use App\Model\Category;
+use App\Model\Product;
 use Illuminate\Support\Facades\DB;
-use Yajra\Datatables\Datatables;
+use Yajra\DataTables\Facades\DataTables;
 
 class DatatableController extends Controller
 {
@@ -31,23 +32,13 @@ class DatatableController extends Controller
     public function product()
     {
         DB::statement(DB::raw('set @rownum=0'));
-        $products = DB::table('products')
-            ->join('categories', 'categories.id', '=', 'products.category_id')
-            ->select([
-                DB::raw('@rownum  := @rownum  + 1 AS rownum'),
-                'products.id AS products_id',
-                'products.name',
-                'products.selling_price',
-                'products.capital_price',
-                'products.stock',
-                'products.image',
-                'categories.name AS categories_name'
-            ]);
+        $products = Product::with('category')->select(['products.*', DB::raw('@rownum  := @rownum  + 1 AS rownum')]);
 
         return Datatables::of($products)
             ->addColumn('action', function ($products) {
                 return view('pages.product.action', compact('products'))->render();
             })
+            ->addIndexColumn()
             ->make(true);
     }
 

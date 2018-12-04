@@ -51,13 +51,12 @@ class SaleController extends Controller
      */
     public function store(Request $request)
     {
-        $itemId = [];
         $sales = new Sale();
         $sales->number = $request->salesNumber;
         $sales->total = $request->salesTotal;
 
         if (!$sales->save()) {
-            return response('Error saving to Details', 500);
+            \Session::flash('success', sprintf('%s', 'Sales number '.$request->salesNumber.' can not be created!'));
         }
 
         foreach ($request->itemData as $itemData) {
@@ -67,10 +66,13 @@ class SaleController extends Controller
             $salesDetails->qty = $itemData['itemQty'];
 
             if (!$salesDetails->save()) {
-                return response('Error saving to Sales Details', 500);
+                \Session::flash('success', sprintf('%s', 'Sales number '.$request->salesNumber.' can not be created!'));
             }
         }
-        return redirect()->action('SaleController@index')->with('success', sprintf('%s', 'Sales number '.$request->salesNumber.' has been added!'));
+
+        \Session::flash('success', sprintf('%s', 'Sales number '.$request->salesNumber.' has been added!'));
+
+        return response('success');
     }
 
     /**

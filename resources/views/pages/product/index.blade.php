@@ -72,16 +72,18 @@
             columns: [
                 { data: 'rownum', name: 'rownum', searchable: false},
                 { data: 'name', name: 'name' },
-                { data: 'capital_price', name: 'capital_price' },
-                { data: 'selling_price', name: 'selling_price' },
+                { data: 'capital_price', name: 'capital_price', render: $.fn.dataTable.render.number( '.', ',', 0, 'Rp ' ) },
+                { data: 'selling_price', name: 'selling_price', render: $.fn.dataTable.render.number( '.', ',', 0, 'Rp ' ) },
                 { data: 'stock', name: 'stock' },
                 {
                     data: 'image', name: 'image',
                     render: function (data, type, row) {
                         return "<img src=\"/uploads/" + data + "\" width=\"150\"/>";
-                    }
+                    },
+                    searchable: false,
+                    orderable: false
                 },
-                { data: 'categories_name', name: 'category' },
+                { data: 'category.name', name: 'category.name'},
                 { data: 'action', name: 'action', orderable: false, searchable: false }
             ]
         });
