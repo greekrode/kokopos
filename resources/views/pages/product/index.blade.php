@@ -74,7 +74,7 @@
                 { data: 'name', name: 'name' },
                 { data: 'capital_price', name: 'capital_price', render: $.fn.dataTable.render.number( '.', ',', 0, 'Rp ' ) },
                 { data: 'selling_price', name: 'selling_price', render: $.fn.dataTable.render.number( '.', ',', 0, 'Rp ' ) },
-                { data: 'stock', name: 'stock' },
+                { data: 'stock.stock', name: 'stock.stock', "defaultContent": "0" },
                 {
                     data: 'image', name: 'image',
                     render: function (data, type, row) {

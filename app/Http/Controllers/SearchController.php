@@ -20,7 +20,7 @@ class SearchController extends Controller
         $formatted_products = [];
         $loop = 1;
         foreach ($products as $product) {
-            if ($product->stock > 0) {
+            if ($product->stock->stock > 0) {
                 $formatted_products[] = ['id' => $loop, 'text' => $product->name, 'price' => $product->selling_price, 'image' => $product->image, 'product_id' => $product->id];
                 $loop ++;
             }

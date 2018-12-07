@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Model\Product;
 use App\Model\Sale;
 use App\Model\SalesDetail;
+use App\Model\Stock;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SaleController extends Controller
 {
@@ -51,6 +53,8 @@ class SaleController extends Controller
      */
     public function store(Request $request)
     {
+        DB::beginTransaction();
+
         $sales = new Sale();
         $sales->number = $request->salesNumber;
         $sales->total = $request->salesTotal;
@@ -62,25 +66,29 @@ class SaleController extends Controller
 
         foreach ($request->itemData as $itemData) {
             $salesDetails = new SalesDetail();
-            $salesDetails->sales_id = $sales->id;
             $salesDetails->product_id = $itemData['itemId'];
             $salesDetails->qty = $itemData['itemQty'];
 
-            $product = Product::find($itemData['itemId']);
-            $product->stock -= $itemData['itemQty'];
+            $stock = Stock::where('product_id',$itemData['itemId'])->first();
+            $stock->stock -= $itemData['itemQty'];
 
-            if ($product->stock > 0) {
-                $product->save();
+            if ($stock->stock > 0) {
+                $salesDetails->sales_id = $sales->id;
+                $stock->save();
             } else {
+                $product = Product::find($itemData['itemId']);
                 \Session::flash('fail', sprintf('%s', 'Product '.$product->name.' stock is not enough!'));
+                DB::rollBack();
                 return response('failed');
             }
 
             if (!$salesDetails->save()) {
                 \Session::flash('success', sprintf('%s', 'Sales number '.$request->salesNumber.' can not be created!'));
+                DB::rollBack();
                 return response('failed');
             }
 
+            DB::commit();
         }
 
         \Session::flash('success', sprintf('%s', 'Sales number '.$request->salesNumber.' has been added!'));

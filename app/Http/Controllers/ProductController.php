@@ -43,7 +43,6 @@ class ProductController extends Controller
             'name' => 'required',
             'capital_price' => 'required|integer',
             'selling_price' => 'required|integer',
-            'stock' => 'required|integer',
             'category_id' => 'required'
         ]);
 
@@ -61,7 +60,6 @@ class ProductController extends Controller
             'name' => $request->name,
             'capital_price' => $request->capital_price,
             'selling_price' => $request->selling_price,
-            'stock' => $request->stock,
             'mime' => $image->getClientMimeType(),
             'original_image' => $image->getClientOriginalName(),
             'image' => $image->getFilename().'.'.$extension,

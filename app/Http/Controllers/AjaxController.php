@@ -12,9 +12,9 @@ class AjaxController extends Controller
         $productId = $request->get('productId');
         $productQty = $request->get('qty');
 
-        $product = Product::find($productId);
-        if ($productQty > $product->stock) {
-            return response($product->stock);
+        $productStock = Product::find($productId)->stock;
+        if ($productQty > $productStock->stock) {
+            return response($productStock->stock);
         }
 
         return response('true');

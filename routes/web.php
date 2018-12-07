@@ -58,6 +58,18 @@ Route::group(['middleware' => ['auth']], function () {
         ]
     ]);
 
+    Route::resource('stocks', 'StockController',[
+        'names' => [
+            'index'     => 'stocks',
+            'store'     => 'stocks.store',
+            'edit'      => 'stocks.edit',
+            'show'      => 'stocks.show',
+            'create'    => 'stocks.create',
+            'update'    => 'stocks.update',
+            'destroy'   => 'stocks.destroy'
+        ]
+    ]);
+
 
     Route::get('datatable/category', 'DatatableController@category')->name('datatable.category');
     Route::get('datatable/product', 'DatatableController@product')->name('datatable.product');

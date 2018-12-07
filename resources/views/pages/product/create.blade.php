@@ -64,18 +64,6 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="stock" class="col-sm-3 text-right control-label col-form-label">Stock</label>
-                                <div class="col-sm-9">
-                                    <input type="text" id="stock" name="stock" class="form-control {{ $errors->has('stock') ? 'is-invalid' : '' }}" placeholder="Product Stock" autofocus>
-                                    @if ($errors->has('stock'))
-                                        <div class="invalid-feedback">
-                                            {{ $errors->first('stock') }}
-                                        </div>
-                                    @endif
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
                                 <label for="image" class="col-sm-3 text-right control-label col-form-label">Image</label>
                                 <div class="col-sm-9">
                                     <div class="custom-file">

@@ -18,7 +18,6 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->integer('selling_price');
             $table->integer('capital_price');
-            $table->integer('stock');
             $table->string('image')->nullable();
             $table->string('mime')->nullable();
             $table->string('original_image')->nullable();

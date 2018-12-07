@@ -32,7 +32,7 @@ class DatatableController extends Controller
     public function product()
     {
         DB::statement(DB::raw('set @rownum=0'));
-        $products = Product::with('category')->select(['products.*', DB::raw('@rownum  := @rownum  + 1 AS rownum')]);
+        $products = Product::info()->select(['products.*', DB::raw('@rownum  := @rownum  + 1 AS rownum')]);
 
         return Datatables::of($products)
             ->addColumn('action', function ($products) {

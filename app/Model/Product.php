@@ -12,7 +12,7 @@ class Product extends Model
     protected $searchableColumns = ['name'];
 
     protected $fillable = [
-        'name', 'selling_price', 'capital_price', 'stock', 'image', 'mime', 'original_image','category_id'
+        'name', 'selling_price', 'capital_price', 'image', 'mime', 'original_image','category_id'
     ];
 
     protected $guarded = [
@@ -27,5 +27,15 @@ class Product extends Model
     public function salesdetails()
     {
         return $this->hasMany(SalesDetail::class);
+    }
+
+    public function stock()
+    {
+        return $this->hasOne(Stock::class);
+    }
+
+    public function scopeInfo($query)
+    {
+        return $query->with('category', 'stock');
     }
 }
