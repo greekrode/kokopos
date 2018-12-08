@@ -30,12 +30,13 @@
                                 <table id="zero_config" class="table table-bordered">
                                     <thead class="thead-dark">
                                     <tr>
-                                        <th class="font-22 font-bold" width="10%">ID</th>
+                                        <th class="font-22 font-bold" width="5%">ID</th>
                                         <th class="font-22 font-bold" width="25%">Name</th>
                                         <th class="font-22 font-bold" width="20%">Image</th>
                                         <th class="font-22 font-bold" width="15%">Price</th>
                                         <th class="font-22 font-bold" width="15%">Quantity</th>
                                         <th class="font-22 font-bold" width="15%">Subtotal</th>
+                                        <th class="font-22 font-bold" width="10%">Action</th>
                                         <th id="item-id" style="display: none">Item ID</th>
                                     </tr>
                                     </thead>
@@ -170,6 +171,22 @@
             });
         }
 
+        function recalculate(itemId) {
+            var subtotal = parseInt($('#subtotal' + itemId).html().substring(3).replace('.',""));
+            var total = $('#sales-total-text').html().replace('.',"");
+            $('#sales-total-text').text(numberWithCommas(total-subtotal));
+        }
+
+        $('#zero_config tbody').on( 'click', '#delete', function () {
+            var itemId = table.row($(this).parents('tr')).data()[7];
+            recalculate(itemId);
+
+            table
+                .row( $(this).parents('tr') )
+                .remove()
+                .draw();
+        } );
+
         $('#products').on('select2:select', function(e) {
             $('#products').empty();
            let products = e.params.data;
@@ -185,14 +202,15 @@
                    "<span id=\"price" + products.product_id + "\">" + 'Rp ' + numberWithCommas(products.price) +"</span>",
                    "<input type='number' name=\"qty" + products.product_id + "\" id=\"qty" + products.product_id+ "\" value='1' class='form-control col-10' oninput=\"calculate(" + products.product_id + ");\">",
                    "<span id=\"subtotal" + products.product_id + "\">" + 'Rp ' + numberWithCommas(products.price) +"</span>",
+                   "<button id=\"delete\" class=\"btn btn-md btn-danger\" type=\"submit\"><i class=\"mdi mdi-delete\"></i></button>",
                    products.product_id
                ]).draw(false);
-               table.column(6).visible(false).draw(false);
+               table.column(7).visible(false).draw(false);
                $('#sales-total-text').text(numberWithCommas(products.price));
            } else {
                var itemIdArray = [];
                table.rows().every(function (rowIdx, tableLoop, rowLoop) {
-                   itemIdArray.push(data[rowIdx][6]);
+                   itemIdArray.push(data[rowIdx][7]);
                });
 
                if ($.inArray(products.product_id, itemIdArray) === -1) {
@@ -200,7 +218,7 @@
                } else {
                    dataCheck = true;
                    table.rows().every(function (rowIdx, tableLoop, rowLoop) {
-                       if (data[rowIdx][6] === products.product_id) {
+                       if (data[rowIdx][7] === products.product_id) {
                            let rowQty = parseInt(table.cell(rowIdx, 4).nodes().to$().find('input').val()) + 1;
                            table.cell(rowIdx, 4).data("<input type='number' name=\"qty" + products.product_id + "\" id=\"qty" + products.product_id + "\" value=\"" + rowQty + "\"  class='form-control col-10' oninput=\"calculate(" + products.product_id + ");\">").draw();
                            calculate(products.product_id);
@@ -216,9 +234,10 @@
                        "<span id=\"price" + products.product_id + "\">" + 'Rp ' + numberWithCommas(products.price) + "</span>",
                        "<input type='number' name=\"qty" + products.product_id + "\" id=\"qty" + products.product_id + "\" value='1' class='form-control col-10' oninput=\"calculate(" + products.product_id + ");\">",
                        "<span id=\"subtotal" + products.product_id + "\">" + 'Rp ' + numberWithCommas(products.price) + "</span>",
-                       products.product_id
+                       "<button id=\"delete\" class=\"btn btn-md btn-danger\" type=\"submit\"><i class=\"mdi mdi-delete\"></i></button>",
+                       products.product_id,
                    ]).draw(false);
-
+                   table.column(7).visible(false).draw(false);
                    counter++;
                }
 
@@ -239,7 +258,7 @@
 
             table.rows().every(function (rowIdx, tableLoop, rowLoop) {
                 allItemArray.push({
-                    itemId: data[rowIdx][6],
+                    itemId: data[rowIdx][7],
                     itemQty: table.cell(rowIdx, 4).nodes().to$().find('input').val()
                 });
             });

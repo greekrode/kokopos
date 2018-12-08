@@ -73,9 +73,10 @@ class DatatableController extends Controller
             ])->where('id', '=', $id);
 
         return Datatables::of($sales)
-//            ->addColumn('action', function ($sales) {
-//                return view('pages.sales.action', compact('sales'))->render();
-//            })
+            ->addColumn('action', function ($sales) {
+                return view('pages.sales.product_actionaction', compact('sales'))->render();
+            })
             ->make(true);
     }
+
 }
