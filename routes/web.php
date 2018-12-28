@@ -58,15 +58,27 @@ Route::group(['middleware' => ['auth']], function () {
         ]
     ]);
 
-    Route::resource('stocks', 'StockController',[
+    Route::resource('stock', 'StockController',[
         'names' => [
-            'index'     => 'stocks',
-            'store'     => 'stocks.store',
-            'edit'      => 'stocks.edit',
-            'show'      => 'stocks.show',
-            'create'    => 'stocks.create',
-            'update'    => 'stocks.update',
-            'destroy'   => 'stocks.destroy'
+            'index'     => 'stock',
+            'store'     => 'stock.store',
+            'edit'      => 'stock.edit',
+            'show'      => 'stock.show',
+            'create'    => 'stock.create',
+            'update'    => 'stock.update',
+            'destroy'   => 'stock.destroy'
+        ]
+    ]);
+
+    Route::resource('purchase', 'PurchaseController',[
+        'names' => [
+            'index'     => 'purchase',
+            'store'     => 'purchase.store',
+            'edit'      => 'purchase.edit',
+            'show'      => 'purchase.show',
+            'create'    => 'purchase.create',
+            'update'    => 'purchase.update',
+            'destroy'   => 'purchase.destroy'
         ]
     ]);
 
@@ -74,6 +86,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('datatable/category', 'DatatableController@category')->name('datatable.category');
     Route::get('datatable/product', 'DatatableController@product')->name('datatable.product');
     Route::get('datatable/sales', 'DatatableController@sales')->name('datatable.sales');
+    Route::get('datatable/stock', 'DatatableController@stock')->name('datatable.stock');
+    Route::get('datatable/purchase', 'DatatableController@purchase')->name('datatable.purchase');
     Route::get('datatable/sales/products/{id}', 'DatatableController@salesProducts')->name('datatable.sales.products');
 
     Route::get('search/product', 'SearchController@product')->name('search.product');

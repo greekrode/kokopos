@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\Product;
+use App\Model\Stock;
 use Illuminate\Http\Request;
 
 class StockController extends Controller
@@ -13,7 +15,8 @@ class StockController extends Controller
      */
     public function index()
     {
-        //
+        $stocks = Stock::all();
+        return view('pages.stock.index')->with('stocks', $stocks);
     }
 
     /**
@@ -23,7 +26,8 @@ class StockController extends Controller
      */
     public function create()
     {
-        //
+        $products = Product::all();
+        return view('pages.stock.create')->with('products', $products);
     }
 
     /**

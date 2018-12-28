@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('title', 'Stock')
+@section('title', 'Purchase')
 
 @section('content')
     <!-- ============================================================== -->
@@ -14,8 +14,8 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h3 class="card-title float-left mb-3">Stock Data</h3>
-                        <a class="card-title btn btn-primary float-right mb-3" href="{{ route('stock.create') }}"><i class="mdi mdi-plus"></i> Add New</a>
+                        <h3 class="card-title float-left mb-3">Purchase Data</h3>
+                        <a class="card-title btn btn-primary float-right mb-3" href="{{ route('purchase.create') }}"><i class="mdi mdi-plus"></i> Add New</a>
                         <div class="table-responsive">
                             @if (session('success'))
                                 <div class="alert alert-success" role="alert">
@@ -31,7 +31,7 @@
                                     <tr>
                                         <th class="font-22 font-bold">ID</th>
                                         <th class="font-22 font-bold">Product</th>
-                                        <th class="font-22 font-bold">Stock</th>
+                                        <th class="font-22 font-bold">Quantity</th>
                                         <th class="font-22 font-bold">Action</th>
                                     </tr>
                                 </thead>
@@ -63,11 +63,11 @@
             responsive: true,
             processing: true,
             serverSide: true,
-            ajax: '{!! route('datatable.stock') !!}',
+            ajax: '{!! route('datatable.purchase') !!}',
             columns: [
                 { data: 'rownum', name: 'rownum', searchable: false},
                 { data: 'product.name', name: 'product.name' },
-                { data: 'stock', name: 'stock'},
+                { data: 'qty', name: 'qty'},
                 { data: 'action', name: 'action', orderable: false, searchable: false}
             ]
         });

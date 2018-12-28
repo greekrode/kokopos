@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\Product;
 use Illuminate\Http\Request;
 
 class PurchaseController extends Controller
@@ -13,7 +14,7 @@ class PurchaseController extends Controller
      */
     public function index()
     {
-        //
+        return view('pages.purchase.index');
     }
 
     /**
@@ -23,7 +24,8 @@ class PurchaseController extends Controller
      */
     public function create()
     {
-        //
+        $products = Product::all();
+        return view('pages.purchase.create')->with('products', $products);
     }
 
     /**

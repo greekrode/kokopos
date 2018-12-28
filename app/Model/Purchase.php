@@ -18,4 +18,9 @@ class Purchase extends Model
     {
         return $this->belongsTo(Product::class);
     }
+
+    public function scopeInfo($query)
+    {
+        return $query->with('products');
+    }
 }

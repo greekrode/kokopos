@@ -10,6 +10,8 @@ namespace App\Http\Controllers;
 
 use App\Model\Category;
 use App\Model\Product;
+use App\Model\Purchase;
+use App\Model\Stock;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -37,6 +39,19 @@ class DatatableController extends Controller
         return Datatables::of($products)
             ->addColumn('action', function ($products) {
                 return view('pages.product.action', compact('products'))->render();
+            })
+            ->addIndexColumn()
+            ->make(true);
+    }
+
+    public function stock()
+    {
+        DB::statement(DB::raw('set @rownum=0'));
+        $stocks = Stock::info()->select(['stocks.*', DB::raw('@rownum  := @rownum  + 1 AS rownum')]);
+
+        return Datatables::of($stocks)
+            ->addColumn('action', function ($stocks) {
+                return view('pages.stock.action', compact('stocks'))->render();
             })
             ->addIndexColumn()
             ->make(true);
@@ -74,8 +89,21 @@ class DatatableController extends Controller
 
         return Datatables::of($sales)
             ->addColumn('action', function ($sales) {
-                return view('pages.sales.product_actionaction', compact('sales'))->render();
+                return view('pages.sales.action', compact('sales'))->render();
             })
+            ->make(true);
+    }
+
+    public function purchase()
+    {
+        DB::statement(DB::raw('set @rownum=0'));
+        $purchases = Purchase::info()->select(['purchases.*', DB::raw('@rownum  := @rownum  + 1 AS rownum')]);
+
+        return Datatables::of($purchases)
+            ->addColumn('action', function ($purchases) {
+                return view('pages.purchase.action', compact('purchases'))->render();
+            })
+            ->addIndexColumn()
             ->make(true);
     }
 

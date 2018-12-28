@@ -16,12 +16,14 @@
                     <form class="form-horizontal" method="POST" action="{{ route('stock.store')  }}">
                         <div class="card-body">
                             <h4 class="card-title">New stock</h4>
-                                @csrf
+                            @csrf
                             <div class="form-group row">
-                                <label for="product" class="col-sm-3 text-right control-label col-form-label">Product</label>
+                                <label for="product"
+                                       class="col-sm-3 text-right control-label col-form-label">Product</label>
                                 <div class="col-sm-9">
-                                    <select class="select2 form-control custom-select" style="width: 100%; height:36px;" name="product_id">
-                                        <option> </option>
+                                    <select class="select2 form-control custom-select" style="width: 100%; height:36px;"
+                                            name="product_id">
+                                        <option></option>
                                         @foreach($products as $product)
                                             <option value="{{ $product->id }}">{{ $product->name }}</option>
                                         @endforeach
@@ -30,9 +32,12 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="amount" class="col-sm-3 text-right control-label col-form-label">Amount</label>
+                                <label for="amount"
+                                       class="col-sm-3 text-right control-label col-form-label">Quantity</label>
                                 <div class="col-sm-9">
-                                    <input type="number" id="amount" name="amount" class="form-control {{ $errors->has('amount') ? 'is-invalid' : '' }}" placeholder="Stock amount" autofocus>
+                                    <input type="number" id="amount" name="amount"
+                                           class="form-control {{ $errors->has('amount') ? 'is-invalid' : '' }}"
+                                           placeholder="Purchase Quantity" autofocus>
                                     @if ($errors->has('amount'))
                                         <div class="invalid-feedback">
                                             {{ $errors->first('amount') }}
@@ -49,18 +54,18 @@
                     </form>
                 </div>
             </div>
+            <!-- ============================================================== -->
+            <!-- End Page Content -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Right sidebar -->
+            <!-- ============================================================== -->
+            <!-- .right-sidebar -->
+            <!-- ============================================================== -->
+            <!-- End Right sidebar -->
+            <!-- ============================================================== -->
+        </div>
         <!-- ============================================================== -->
-        <!-- End Page Content -->
+        <!-- End Container fluid  -->
         <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Right sidebar -->
-        <!-- ============================================================== -->
-        <!-- .right-sidebar -->
-        <!-- ============================================================== -->
-        <!-- End Right sidebar -->
-        <!-- ============================================================== -->
-    </div>
-    <!-- ============================================================== -->
-    <!-- End Container fluid  -->
-    <!-- ============================================================== -->
 @endsection
