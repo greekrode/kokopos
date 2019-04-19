@@ -13,19 +13,18 @@
         <div class="row">
             <div class="col-md-8 mx-auto">
                 <div class="card">
-                    <form class="form-horizontal" method="POST" action="{{ route('category.update', $category->id)  }}">
-                        @method('PATCH')
-                        @csrf
+                    <form class="form-horizontal" method="POST" action="{{ route('stock.update', $stock->id)  }}">
                         <div class="card-body">
-                            <h4 class="card-title">Edit category</h4>
+                            <h4 class="card-title">Edit stock</h4>
+                            @method('PATCH')
+                            @csrf
                             <div class="form-group row">
-                                @csrf
-                                <label for="name" class="col-sm-3 text-right control-label col-form-label">Name</label>
+                                <label for="amount" class="col-sm-3 text-right control-label col-form-label">Amount</label>
                                 <div class="col-sm-9">
-                                    <input type="text" id="name" name="name" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" value="{{ $category->name  }}" autofocus>
-                                    @if ($errors->has('name'))
+                                    <input type="number" id="amount" name="amount" value="{{ $stock->stock }}" class="form-control {{ $errors->has('amount') ? 'is-invalid' : '' }}" placeholder="Stock amount" autofocus>
+                                    @if ($errors->has('amount'))
                                         <div class="invalid-feedback">
-                                            {{ $errors->first('name') }}
+                                            {{ $errors->first('amount') }}
                                         </div>
                                     @endif
                                 </div>
