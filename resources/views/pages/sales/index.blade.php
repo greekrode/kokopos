@@ -31,6 +31,7 @@
                                     <tr>
                                         <th class="font-22 font-bold">ID</th>
                                         <th class="font-22 font-bold">Number</th>
+                                        <th class="font-22 font-bold">Date</th>
                                         <th class="font-22 font-bold">Total</th>
                                         <th class="font-22 font-bold">Action</th>
                                     </tr>
@@ -64,13 +65,15 @@
             responsive: true,
             processing: true,
             serverSide: true,
+            order: [[2, "desc"]],
             ajax: '{!! route('datatable.sales') !!}',
             columns: [
                 { data: 'rownum', name: 'rownum', searchable: false },
                 { data: 'number', name: 'number' },
+                { data: 'created_at', name: 'created_at' },
                 { data: 'total', name: 'total', render: $.fn.dataTable.render.number( '.', ',', 0, 'Rp ' )},
                 { data: 'action', name: 'action', orderable: false, searchable: false }
-            ]
+            ],
         });
     </script>
 @endpush

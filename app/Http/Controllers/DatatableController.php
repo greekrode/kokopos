@@ -12,6 +12,7 @@ use App\Model\Category;
 use App\Model\Product;
 use App\Model\Purchase;
 use App\Model\Stock;
+use function foo\func;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -65,12 +66,16 @@ class DatatableController extends Controller
                 DB::raw('@rownum  := @rownum  + 1 AS rownum'),
                 'id',
                 'number',
-                'total'
+                'total',
+                'created_at'
             ]);
 
         return Datatables::of($sales)
             ->addColumn('action', function ($sales) {
                 return view('pages.sales.action', compact('sales'))->render();
+            })
+            ->editColumn('created_at', function($sales){
+                return date('d-m-Y', strtotime($sales->created_at));
             })
             ->make(true);
     }
