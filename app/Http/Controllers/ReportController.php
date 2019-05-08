@@ -25,9 +25,14 @@ class ReportController extends Controller
      */
     public function create(Request $request)
     {
-        $month = $request->month;
-        $beginning = Carbon::createFromDate(null, $month, 1);
-        $end = Carbon::instance($beginning)->endOfMonth();
+        if ($request->filter === 'daily') {
+            $beginning = Carbon::now()->startOfDay();
+            $end = Carbon::now()->endOfDay();
+        } else {
+            $month = $request->month;
+            $beginning = Carbon::createFromDate(null, $month, 1);
+            $end = Carbon::instance($beginning)->endOfMonth();
+        }
         $sales = Sale::whereBetween('created_at', [$beginning, $end])
                     ->get();
 

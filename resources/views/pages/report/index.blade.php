@@ -17,12 +17,22 @@
                         <div class="card-body">
                             <h4 class="card-title">Report Filter</h4>
                             @csrf
-                            <div class="form-group row">
-                                <label for="product" class="col-sm-3 text-right control-label col-form-label">Month</label>
+                            <div class="form-group row" id="filter">
+                                <label for="filter" class="col-sm-3 text-right control-label col-form-label">Filter</label>
+                                <div class="col-sm-9">
+                                    <select class="select2 form-control custom-select" style="width: 100%; height:36px;" name="filter" onchange="showFilter()">
+                                        <option selected value=''>--Select Filter--</option>
+                                        <option value="daily">Daily</option>
+                                        <option value="monthly">Monthly</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row" id="month" style="visibility: hidden;">
+                                <label for="month" class="col-sm-3 text-right control-label col-form-label">Month</label>
                                 <div class="col-sm-9">
                                     <select class="select2 form-control custom-select" style="width: 100%; height:36px;" name="month">
                                         <option selected value=''>--Select Month--</option>
-                                        <option value='1'>Janaury</option>
+                                        <option value='1'>Januaory</option>
                                         <option value='2'>February</option>
                                         <option value='3'>March</option>
                                         <option value='4'>April</option>
@@ -34,7 +44,6 @@
                                         <option value='10'>October</option>
                                         <option value='11'>November</option>
                                         <option value='12'>December</option>
-
                                     </select>
                                 </div>
                             </div>
@@ -62,3 +71,16 @@
         <!-- End Container fluid  -->
         <!-- ============================================================== -->
 @endsection
+
+@push('scripts')
+    <script>
+        function showFilter(){
+            let filter = $('#filter :selected').val();
+            if (filter === 'monthly') {
+                $('#month').css("visibility", "visible");
+            } else {
+                $('#month').css("visibility", "hidden");
+            }
+        }
+    </script>
+@endpush

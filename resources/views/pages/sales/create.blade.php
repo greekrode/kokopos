@@ -300,8 +300,6 @@
                 "Submit": function() {
                     let paymentAmount = parseInt($('#payment-amount').val().replace('.',""));
                     let totalAmount = parseInt($('#sales-total-text').html().replace('.', ""))
-                    console.log(paymentAmount);
-                    console.log(totalAmount);
 
                     $('#payment-text').text(numberWithCommas(paymentAmount));
 

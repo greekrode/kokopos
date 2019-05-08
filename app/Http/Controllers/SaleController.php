@@ -6,9 +6,12 @@ use App\Model\Product;
 use App\Model\Sale;
 use App\Model\SalesDetail;
 use App\Model\Stock;
+use App\Model\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class SaleController extends Controller
 {
@@ -147,6 +150,7 @@ class SaleController extends Controller
     public function destroy($id)
     {
         $sale = Sale::find($id);
+
         try {
             SalesDetail::where('sales_id', $sale->id)->delete();
             $sale->delete();

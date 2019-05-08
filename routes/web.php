@@ -96,5 +96,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('search/product', 'SearchController@product')->name('search.product');
 
     Route::get('ajax/product', 'AjaxController@product')->name('ajax.product');
+
+    Route::get('/delete/sales/{id}', 'DeleteController@delete')->name('delete.sales');
+    Route::delete('/delete/sales/{id}', 'DeleteController@destroy')->name('delete.sales_destroy');
 });
 
