@@ -298,14 +298,17 @@
             modal: true,
             buttons: {
                 "Submit": function() {
-                    let paymentAmount = $('#payment-amount').val().replace('.',"");
-                    let totalAmount = $('#sales-total-text').html().replace('.', "");
+                    let paymentAmount = parseInt($('#payment-amount').val().replace('.',""));
+                    let totalAmount = parseInt($('#sales-total-text').html().replace('.', ""))
+                    console.log(paymentAmount);
+                    console.log(totalAmount);
 
                     $('#payment-text').text(numberWithCommas(paymentAmount));
 
                     if (paymentAmount >= totalAmount) {
                         $('#change-text').text(numberWithCommas(paymentAmount - totalAmount));
                         $( this ).dialog( "close" );
+                        $('#error-p').css("display", "none");
                     } else {
                         $('#error-p').css("display", "block");
                         $('#error-message').text(" Payment amount must be bigger than total amount");

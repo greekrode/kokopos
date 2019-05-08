@@ -21,6 +21,7 @@ $this->post('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/', 'HomeController@index')->name('dashboard');
+    Route::get('/home', 'HomeController@index')->name('dashboard');
 
     Route::resource('category','CategoryController', [
         'names' => [
@@ -82,17 +83,8 @@ Route::group(['middleware' => ['auth']], function () {
         ]
     ]);
 
-    Route::resource('report', 'ReportController',[
-        'names' => [
-            'index'     => 'report',
-            'store'     => 'report.store',
-            'edit'      => 'report.edit',
-            'show'      => 'report.show',
-            'create'    => 'report.create',
-            'update'    => 'report.update',
-            'destroy'   => 'report.destroy'
-        ]
-    ]);
+    Route::get('/report', 'ReportController@index')->name('report.index');
+    Route::post('/report', 'ReportController@create')->name('report.create');
 
     Route::get('datatable/category', 'DatatableController@category')->name('datatable.category');
     Route::get('datatable/product', 'DatatableController@product')->name('datatable.product');

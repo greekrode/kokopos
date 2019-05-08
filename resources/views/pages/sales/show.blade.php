@@ -20,7 +20,7 @@
                             <div class="pull-left">
                                 <address>
                                     <h3> &nbsp;<b class="text-danger">Kokobop Chicken</b></h3>
-                                    <p class="text-muted m-l-5">Grand Palladium, Lantai 4 (Foodcourt)
+                                    <p class="text-muted m-l-5">Grand Palladium, Lt. UG Blok US21 No. 1, 5
                                         <br/> Jl. Kapten Maulana Lubis No. 10
                                         <br/> Medan - 20242</p>
                                 </address>

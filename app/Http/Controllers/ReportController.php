@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\Sale;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ReportController extends Controller
@@ -13,7 +15,7 @@ class ReportController extends Controller
      */
     public function index()
     {
-        //
+        return view('pages.report.index');
     }
 
     /**
@@ -21,9 +23,15 @@ class ReportController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $month = $request->month;
+        $beginning = Carbon::createFromDate(null, $month, 1);
+        $end = Carbon::instance($beginning)->endOfMonth();
+        $sales = Sale::whereBetween('created_at', [$beginning, $end])
+                    ->get();
+
+        return view ('pages.report.report')->with('sales', $sales);
     }
 
     /**

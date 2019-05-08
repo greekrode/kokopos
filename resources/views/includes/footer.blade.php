@@ -2,7 +2,7 @@
 <!-- footer -->
 <!-- ============================================================== -->
 <footer class="footer text-center">
-    All Rights Reserved by Kokobop Chicken, 2018.
+    All Rights Reserved by Kokobop Chicken, 2019.
 </footer>
 <!-- ============================================================== -->
 <!-- End footer -->

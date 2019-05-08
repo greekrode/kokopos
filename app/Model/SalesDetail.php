@@ -26,8 +26,4 @@ class SalesDetail extends Model
         return $this->belongsTo(Sale::class);
     }
 
-    public function calculateGrandTotal($id)
-    {
-
-    }
 }

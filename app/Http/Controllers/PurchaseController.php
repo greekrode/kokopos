@@ -52,14 +52,16 @@ class PurchaseController extends Controller
         $product->save();
 
         if (count($stock) > 0) {
-            $stock[0]->stock += $request->amount;
+            $stock = Stock::where('product_id',  $request->product_id)->first();
+            $stock->stock += $request->amount;
+            $stock->save();
         } else {
             $stock = new Stock([
                 'stock' => $request->amount,
                 'product_id' => $request->product_id
             ]);
+            $stock->save();
         }
-        $stock->save();
 
         return redirect()->action('PurchaseController@index')->with('success', sprintf('%s', 'Product '. $product->name.' has been added!'));
     }
@@ -100,18 +102,19 @@ class PurchaseController extends Controller
         $purchase = Purchase::find($id);
         $purchase->qty = $request->amount;
         $purchase->price = $request->price;
-        $purchase->save();
 
-        $stock = Stock::where('product_id', $purchase->product_id)->first();
-        $stock->update([
-            'amount' => $stock->amount + $request->amount
+        $stockAmount = Stock::where('product_id', $purchase->product_id)->first()->stock;
+        Stock::where('product_id', $purchase->product_id)->update([
+            'stock' => $stockAmount + abs($stockAmount - $request->amount)
         ]);
 
         Product::where('id', $purchase->product_id)->update([
             'capital_price' => $request->price
         ]);
 
-        return redirect()->action('PurchaseController@index')->with('success', sprintf('%s', 'Purchase for product '.$stock->product->name.' has been deleted!'));
+        $purchase->save();
+
+        return redirect()->action('PurchaseController@index')->with('success', sprintf('%s', 'Purchase for product '.$purchase->product->name.' has been deleted!'));
     }
 
     /**
@@ -123,13 +126,13 @@ class PurchaseController extends Controller
     public function destroy($id)
     {
         $purchase = Purchase::find($id);
-        $stock = Stock::where('product_id', $purchase->product_id);
         try {
-            $stock->delete();
+            $stockAmount = Stock::where('product_id', $purchase->product_id)->first()->stock;
+            Stock::where('product_id', $purchase->product_id)->update(['stock' => $stockAmount - $purchase->qty ]);
             $purchase->delete();
-            return redirect()->action('StockController@index')->with('success', sprintf('%s', 'Purchase for product '.$stock->product->name.' has been deleted!'));
+            return redirect()->action('PurchaseController@index')->with('success', sprintf('%s', 'Purchase for product '.$purchase->product->name.' has been deleted!'));
         } catch (\Exception $e) {
-            return redirect()->action('StockController@index')->with('fail', sprintf('%s', 'Purchase for product '.$stock->product->name.' can not be deleted!'));
+            return redirect()->action('PurchaseController@index')->with('fail', sprintf('%s', 'Purchase for product '.$purchase->product->name.' can not be deleted!'));
         }
     }
 }
