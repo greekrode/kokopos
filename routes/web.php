@@ -82,6 +82,17 @@ Route::group(['middleware' => ['auth']], function () {
         ]
     ]);
 
+    Route::resource('report', 'ReportController',[
+        'names' => [
+            'index'     => 'report',
+            'store'     => 'report.store',
+            'edit'      => 'report.edit',
+            'show'      => 'report.show',
+            'create'    => 'report.create',
+            'update'    => 'report.update',
+            'destroy'   => 'report.destroy'
+        ]
+    ]);
 
     Route::get('datatable/category', 'DatatableController@category')->name('datatable.category');
     Route::get('datatable/product', 'DatatableController@product')->name('datatable.product');

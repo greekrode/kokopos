@@ -40,7 +40,7 @@ class StockController extends Controller
      */
     public function store(Request $request)
     {
-        $stock = Stock::find($request->product_id);
+        $stock = Stock::where('product_id', $request->product_id)->first();
 
         if (!$stock) {
             $stock = new Stock([

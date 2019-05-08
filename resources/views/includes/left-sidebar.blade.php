@@ -12,6 +12,11 @@
                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link {{Request::segment(1) === 'sales' ? 'active' : ''}}" href="{{ route('sales') }}" aria-expanded="false"><i class="mdi mdi-cart"></i><span class="hide-menu">Sales</span></a></li>
                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link {{Request::segment(1) === 'stock' ? 'active' : ''}}" href="{{ route('stock') }}" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Stocks</span></a></li>
                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link {{Request::segment(1) === 'purchase' ? 'active' : ''}}" href="{{ route('purchase') }}" aria-expanded="false"><i class="mdi mdi-cash"></i><span class="hide-menu">Purchases</span></a></li>
+                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link {{Request::segment(1) === 'report' ? 'active' : ''}}" href="{{ route('report') }}" aria-expanded="false"><i class="mdi mdi-paperclip"></i><span class="hide-menu">Report</span></a></li>
+                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();"
+                        aria-expanded="false"><i class="mdi mdi-key"></i><span class="hide-menu">{{ __('Logout') }}</span></a></li>
             </ul>
         </nav>
         <!-- End Sidebar navigation -->

@@ -146,6 +146,13 @@ class SaleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $sale = Sale::find($id);
+        try {
+            SalesDetail::where('sales_id', $sale->id)->delete();
+            $sale->delete();
+            return redirect()->action('SaleController@index')->with('success', sprintf('%s', 'Sales number '.$sale->number.' has been deleted!'));
+        } catch (\Exception $e) {
+            return redirect()->action('SaleController@index')->with('fail', sprintf('%s', 'Sales number '.$sale->number.' can not be deleted!'));
+        }
     }
 }

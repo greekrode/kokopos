@@ -32,6 +32,7 @@
                                         <th class="font-22 font-bold">ID</th>
                                         <th class="font-22 font-bold">Product</th>
                                         <th class="font-22 font-bold">Quantity</th>
+                                        <th class="font-22 font-bold">Price</th>
                                         <th class="font-22 font-bold">Action</th>
                                     </tr>
                                 </thead>
@@ -68,6 +69,7 @@
                 { data: 'rownum', name: 'rownum', searchable: false},
                 { data: 'product.name', name: 'product.name' },
                 { data: 'qty', name: 'qty'},
+                { data: 'price', name: 'price'},
                 { data: 'action', name: 'action', orderable: false, searchable: false}
             ]
         });

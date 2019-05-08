@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Purchase extends Model
 {
     protected $fillable = [
-        'amount', 'price', 'product_id'
+        'qty', 'price', 'product_id'
     ];
 
     protected $guarded = [
@@ -21,6 +21,6 @@ class Purchase extends Model
 
     public function scopeInfo($query)
     {
-        return $query->with('products');
+        return $query->with('product');
     }
 }
