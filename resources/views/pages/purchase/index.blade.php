@@ -33,6 +33,7 @@
                                         <th class="font-22 font-bold">Product</th>
                                         <th class="font-22 font-bold">Quantity</th>
                                         <th class="font-22 font-bold">Price</th>
+                                        <th class="font-22 font-bold">Date</th>
                                         <th class="font-22 font-bold">Action</th>
                                     </tr>
                                 </thead>
@@ -64,12 +65,14 @@
             responsive: true,
             processing: true,
             serverSide: true,
+            order: [[4, "desc"]],
             ajax: '{!! route('datatable.purchase') !!}',
             columns: [
                 { data: 'rownum', name: 'rownum', searchable: false},
                 { data: 'product.name', name: 'product.name' },
                 { data: 'qty', name: 'qty'},
                 { data: 'price', name: 'price'},
+                { data: 'created_at', name: 'created_at'},
                 { data: 'action', name: 'action', orderable: false, searchable: false}
             ]
         });

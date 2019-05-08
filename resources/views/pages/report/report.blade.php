@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('title', 'Report')
+@section('title', 'Revenue Report')
 
 @section('content')
     <!-- ============================================================== -->
@@ -14,7 +14,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h3 class="card-title float-left mb-3">Report</h3>
+                        <h3 class="card-title float-left mb-3">Revenue Report</h3>
                         <div class="table-responsive">
                             @if (session('success'))
                                 <div class="alert alert-success" role="alert">

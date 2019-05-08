@@ -85,6 +85,8 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/report', 'ReportController@index')->name('report.index');
     Route::post('/report', 'ReportController@create')->name('report.create');
+    Route::get('/report/purchase', 'ReportController@indexPurchase')->name('report.index.purchase');
+    Route::post('/report/purchase', 'ReportController@createPurchase')->name('report.create.purchase');
 
     Route::get('datatable/category', 'DatatableController@category')->name('datatable.category');
     Route::get('datatable/product', 'DatatableController@product')->name('datatable.product');

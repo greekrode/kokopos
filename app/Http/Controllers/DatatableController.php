@@ -108,6 +108,9 @@ class DatatableController extends Controller
             ->addColumn('action', function ($purchases) {
                 return view('pages.purchase.action', compact('purchases'))->render();
             })
+            ->editColumn('created_at', function($purchases){
+                return date('d-m-Y', strtotime($purchases->created_at));
+            })
             ->addIndexColumn()
             ->make(true);
     }
