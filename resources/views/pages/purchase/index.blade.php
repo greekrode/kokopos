@@ -71,7 +71,7 @@
                 { data: 'rownum', name: 'rownum', searchable: false},
                 { data: 'product.name', name: 'product.name' },
                 { data: 'qty', name: 'qty'},
-                { data: 'price', name: 'price'},
+                { data: 'price', name: 'price', render: $.fn.dataTable.render.number( '.', ',', 0, 'Rp ' )},
                 { data: 'created_at', name: 'created_at'},
                 { data: 'action', name: 'action', orderable: false, searchable: false}
             ]

@@ -152,6 +152,11 @@ class SaleController extends Controller
         $sale = Sale::find($id);
 
         try {
+            $salesDetails = SalesDetail::where('sales_id', $sale->id)->get();
+            foreach ($salesDetails as $sd) {
+                $stockAmount = Stock::where('product_id', $sd->product_id)->first()->stock;
+                Stock::where('product_id', $sd->product_id)->update(['stock' => $stockAmount + $sd->qty ]);
+            }
             SalesDetail::where('sales_id', $sale->id)->delete();
             $sale->delete();
             return redirect()->action('SaleController@index')->with('success', sprintf('%s', 'Sales number '.$sale->number.' has been deleted!'));
