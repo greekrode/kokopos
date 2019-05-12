@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('title', 'Purchase')
+@section('title', 'Expense')
 
 @section('content')
     <!-- ============================================================== -->
@@ -13,9 +13,9 @@
         <div class="row">
             <div class="col-md-8 mx-auto">
                 <div class="card">
-                    <form class="form-horizontal" method="POST" action="{{ route('purchase.store')  }}">
+                    <form class="form-horizontal" method="POST" action="{{ route('expense.store')  }}">
                         <div class="card-body">
-                            <h4 class="card-title">New purchase</h4>
+                            <h4 class="card-title">New expense</h4>
                             @csrf
                             <div class="form-group row">
                                 <label for="product"
@@ -32,27 +32,12 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="amount"
-                                       class="col-sm-3 text-right control-label col-form-label">Quantity</label>
-                                <div class="col-sm-9">
-                                    <input type="number" id="amount" name="amount"
-                                           class="form-control {{ $errors->has('amount') ? 'is-invalid' : '' }}"
-                                           placeholder="Purchase Quantity" autofocus>
-                                    @if ($errors->has('amount'))
-                                        <div class="invalid-feedback">
-                                            {{ $errors->first('amount') }}
-                                        </div>
-                                    @endif
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
                                 <label for="price"
                                        class="col-sm-3 text-right control-label col-form-label">Price</label>
                                 <div class="col-sm-9">
                                     <input type="number" id="price" name="price"
                                            class="form-control {{ $errors->has('price') ? 'is-invalid' : '' }}"
-                                           placeholder="Purchase Price" autofocus>
+                                           placeholder="Expense Price" autofocus>
                                     @if ($errors->has('price'))
                                         <div class="invalid-feedback">
                                             {{ $errors->first('price') }}

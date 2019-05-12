@@ -13,9 +13,10 @@
                     <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link {{Request::segment(1) === 'category' ? 'active' : ''}}" href="{{ route('category') }}" aria-expanded="false"><i class="mdi mdi-database"></i><span class="hide-menu">Category</span></a></li>
                     <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link {{Request::segment(1) === 'stock' ? 'active' : ''}}" href="{{ route('stock') }}" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Stocks</span></a></li>
                     <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link {{Request::segment(1) === 'purchase' ? 'active' : ''}}" href="{{ route('purchase') }}" aria-expanded="false"><i class="mdi mdi-cash"></i><span class="hide-menu">Purchases</span></a></li>
+                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link {{Request::segment(1) === 'expense' ? 'active' : ''}}" href="{{ route('expense') }}" aria-expanded="false"><i class="mdi mdi-call-made"></i><span class="hide-menu">Expenses</span></a>
                     <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link has-arrow {{Request::segment(1) === 'report' ? 'active' : ''}}" href="#" aria-expanded="false"><i class="mdi mdi-paperclip"></i><span class="hide-menu">Report</span></a>
                         <ul aria-expanded="false" class="collapse  first-level">
-                            <li class="sidebar-item"><a href="{{ route('report.index') }}" class="sidebar-link"><i class="mdi mdi-alert-octagon"></i><span class="hide-menu"> Revenue Report </span></a></li>
+                            <li class="sidebar-item"><a href="{{ route('report.index') }}" class="sidebar-link"><i class="mdi mdi-alert-octagon"></i><span class="hide-menu"> Income Report </span></a></li>
                             <li class="sidebar-item"><a href="{{ route('report.index.purchase') }}" class="sidebar-link"><i class="mdi mdi-alert-octagon"></i><span class="hide-menu"> Purchase Report </span></a></li>
                         </ul>
                     </li>

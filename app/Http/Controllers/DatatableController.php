@@ -9,6 +9,7 @@
 namespace App\Http\Controllers;
 
 use App\Model\Category;
+use App\Model\Expense;
 use App\Model\Product;
 use App\Model\Purchase;
 use App\Model\Stock;
@@ -110,6 +111,22 @@ class DatatableController extends Controller
             })
             ->editColumn('created_at', function($purchases){
                 return date('d-m-Y', strtotime($purchases->created_at));
+            })
+            ->addIndexColumn()
+            ->make(true);
+    }
+
+    public function expense()
+    {
+        DB::statement(DB::raw('set @rownum=0'));
+        $expenses = Expense::info()->select(['expenses.*', DB::raw('@rownum  := @rownum  + 1 AS rownum')]);
+
+        return DataTables::of($expenses)
+            ->addColumn('action', function ($expenses) {
+                return view('pages.expense.action', compact('expenses'))->render();
+            })
+            ->editColumn('created_at', function($expenses){
+                return date('d-m-Y', strtotime($expenses->created_at));
             })
             ->addIndexColumn()
             ->make(true);

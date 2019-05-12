@@ -114,7 +114,7 @@ class PurchaseController extends Controller
 
         $purchase->save();
 
-        return redirect()->action('PurchaseController@index')->with('success', sprintf('%s', 'Purchase for product '.$purchase->product->name.' has been deleted!'));
+        return redirect()->action('PurchaseController@index')->with('success', sprintf('%s', 'Purchase for product '.$purchase->product->name.' has been updated!'));
     }
 
     /**

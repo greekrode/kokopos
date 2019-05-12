@@ -14,6 +14,15 @@
             <div class="col-md-8 mx-auto">
                 <div class="card">
                     <form class="form-horizontal" method="POST" action="{{ route('report.create')  }}">
+                        @if (session('success'))
+                            <div class="alert alert-success" role="alert">
+                                {{ session('success') }}
+                            </div>
+                        @elseif (session('fail'))
+                            <div class="alert alert-danger" role="alert">
+                                {{ session('fail') }}
+                            </div>
+                        @endif
                         <div class="card-body">
                             <h4 class="card-title">Report Filter</h4>
                             @csrf

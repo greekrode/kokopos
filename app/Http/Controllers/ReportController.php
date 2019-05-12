@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\Expense;
 use App\Model\Purchase;
+use App\Model\ResetStock;
 use App\Model\Sale;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -41,13 +43,26 @@ class ReportController extends Controller
             $end = Carbon::now()->endOfDay();
         } else {
             $month = $request->month;
+            if ($request->month === null){
+                return redirect()->action('ReportController@index')->with('fail', sprintf('%s', 'Please select month!'));
+            }
             $beginning = Carbon::createFromDate(null, $month, 1);
             $end = Carbon::instance($beginning)->endOfMonth();
         }
         $sales = Sale::whereBetween('created_at', [$beginning, $end])
                     ->get();
+        $expenses = Expense::whereBetween('created_at', [$beginning, $end])
+                    ->get();
+        $resetStocks = ResetStock::whereBetween('created_at', [$beginning, $end])
+                    ->get();
 
-        return view ('pages.report.report')->with('sales', $sales);
+        $data = [
+            'sales' => $sales,
+            'expenses' => $expenses,
+            'resetStocks' => $resetStocks
+        ];
+
+        return view ('pages.report.report')->with($data);
     }
 
     /**

@@ -34,6 +34,16 @@ class Product extends Model
         return $this->hasOne(Stock::class);
     }
 
+    public function resetStocks()
+    {
+        return $this->hasMany(ResetStock::class);
+    }
+
+    public function expenses()
+    {
+        return $this->hasMany(Expense::class);
+    }
+
     public function scopeInfo($query)
     {
         return $query->with('category', 'stock');

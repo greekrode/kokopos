@@ -83,6 +83,18 @@ Route::group(['middleware' => ['auth']], function () {
         ]
     ]);
 
+    Route::resource('expense', 'ExpenseController',[
+        'names' => [
+            'index'     => 'expense',
+            'store'     => 'expense.store',
+            'edit'      => 'expense.edit',
+            'show'      => 'expense.show',
+            'create'    => 'expense.create',
+            'update'    => 'expense.update',
+            'destroy'   => 'expense.destroy'
+        ]
+    ]);
+
     Route::get('/report', 'ReportController@index')->name('report.index');
     Route::post('/report', 'ReportController@create')->name('report.create');
     Route::get('/report/purchase', 'ReportController@indexPurchase')->name('report.index.purchase');
@@ -93,6 +105,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('datatable/sales', 'DatatableController@sales')->name('datatable.sales');
     Route::get('datatable/stock', 'DatatableController@stock')->name('datatable.stock');
     Route::get('datatable/purchase', 'DatatableController@purchase')->name('datatable.purchase');
+    Route::get('datatable/expense', 'DatatableController@expense')->name('datatable.expense');
     Route::get('datatable/sales/products/{id}', 'DatatableController@salesProducts')->name('datatable.sales.products');
 
     Route::get('search/product', 'SearchController@product')->name('search.product');
@@ -101,5 +114,8 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/delete/sales/{id}', 'DeleteController@delete')->name('delete.sales');
     Route::delete('/delete/sales/{id}', 'DeleteController@destroy')->name('delete.sales_destroy');
+
+    Route::post('/reset/{id}', 'ResetStockController@reset')->name('reset_stock.reset');
+
 });
 

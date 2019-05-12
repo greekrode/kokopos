@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('title', 'Purchase')
+@section('title', 'Expense')
 
 @section('content')
     <!-- ============================================================== -->
@@ -13,36 +13,19 @@
         <div class="row">
             <div class="col-md-8 mx-auto">
                 <div class="card">
-                    <form class="form-horizontal" method="POST" action="{{ route('purchase.store')  }}">
+                    <form class="form-horizontal" method="POST" action="{{ route('expense.update', $expense->id)  }}">
                         <div class="card-body">
-                            <h4 class="card-title">New purchase</h4>
+                            <h4 class="card-title">Edit expense</h4>
+                            @method('PATCH')
                             @csrf
-                            <div class="form-group row">
-                                <label for="product"
-                                       class="col-sm-3 text-right control-label col-form-label">Product</label>
-                                <div class="col-sm-9">
-                                    <select class="select2 form-control custom-select" style="width: 100%; height:36px;"
-                                            name="product_id">
-                                        <option></option>
-                                        @foreach($products as $product)
-                                            <option value="{{ $product->id }}">{{ $product->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
 
                             <div class="form-group row">
-                                <label for="amount"
-                                       class="col-sm-3 text-right control-label col-form-label">Quantity</label>
+                                <label for="amount" class="col-sm-3 text-right control-label col-form-label">Product Name</label>
                                 <div class="col-sm-9">
-                                    <input type="number" id="amount" name="amount"
-                                           class="form-control {{ $errors->has('amount') ? 'is-invalid' : '' }}"
-                                           placeholder="Purchase Quantity" autofocus>
-                                    @if ($errors->has('amount'))
-                                        <div class="invalid-feedback">
-                                            {{ $errors->first('amount') }}
-                                        </div>
-                                    @endif
+                                    <input type="text"
+                                           id="name"
+                                           name="name"
+                                           value="{{ $purchase->product->name }}" class="form-control {{ $errors->has('amount') ? 'is-invalid' : '' }}" disabled>
                                 </div>
                             </div>
 
@@ -51,6 +34,7 @@
                                        class="col-sm-3 text-right control-label col-form-label">Price</label>
                                 <div class="col-sm-9">
                                     <input type="number" id="price" name="price"
+                                           value="{{ $expense->price }}"
                                            class="form-control {{ $errors->has('price') ? 'is-invalid' : '' }}"
                                            placeholder="Purchase Price" autofocus>
                                     @if ($errors->has('price'))
