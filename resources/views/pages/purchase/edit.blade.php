@@ -30,6 +30,16 @@
                             </div>
 
                             <div class="form-group row">
+                                <label for="amount" class="col-sm-3 text-right control-label col-form-label">Supplier Name</label>
+                                <div class="col-sm-9">
+                                    <input type="text"
+                                           id="name"
+                                           name="name"
+                                           value="{{ $purchase->supplier->name }}" class="form-control {{ $errors->has('supplier') ? 'is-invalid' : '' }}" disabled>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
                                 <label for="amount" class="col-sm-3 text-right control-label col-form-label">Amount</label>
                                 <div class="col-sm-9">
                                     <input type="number"

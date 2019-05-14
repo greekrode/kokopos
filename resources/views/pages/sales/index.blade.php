@@ -33,6 +33,7 @@
                                         <th class="font-22 font-bold">Number</th>
                                         <th class="font-22 font-bold">Date</th>
                                         <th class="font-22 font-bold">Total</th>
+                                        <th class="font-22 font-bold">Customer</th>
                                         <th class="font-22 font-bold">Action</th>
                                     </tr>
                                 </thead>
@@ -72,6 +73,7 @@
                 { data: 'number', name: 'number' },
                 { data: 'created_at', name: 'created_at' },
                 { data: 'total', name: 'total', render: $.fn.dataTable.render.number( '.', ',', 0, 'Rp ' )},
+                { data: 'customer.name', name: 'customer.name' },
                 { data: 'action', name: 'action', orderable: false, searchable: false }
             ],
         });

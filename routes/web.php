@@ -95,6 +95,30 @@ Route::group(['middleware' => ['auth']], function () {
         ]
     ]);
 
+    Route::resource('supplier', 'SupplierController',[
+        'names' => [
+            'index'     => 'supplier',
+            'store'     => 'supplier.store',
+            'edit'      => 'supplier.edit',
+            'show'      => 'supplier.show',
+            'create'    => 'supplier.create',
+            'update'    => 'supplier.update',
+            'destroy'   => 'supplier.destroy'
+        ]
+    ]);
+
+    Route::resource('customer', 'CustomerController',[
+        'names' => [
+            'index'     => 'customer',
+            'store'     => 'customer.store',
+            'edit'      => 'customer.edit',
+            'show'      => 'customer.show',
+            'create'    => 'customer.create',
+            'update'    => 'customer.update',
+            'destroy'   => 'customer.destroy'
+        ]
+    ]);
+
     Route::get('/report', 'ReportController@index')->name('report.index');
     Route::post('/report', 'ReportController@create')->name('report.create');
     Route::get('/report/purchase', 'ReportController@indexPurchase')->name('report.index.purchase');
@@ -106,6 +130,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('datatable/stock', 'DatatableController@stock')->name('datatable.stock');
     Route::get('datatable/purchase', 'DatatableController@purchase')->name('datatable.purchase');
     Route::get('datatable/expense', 'DatatableController@expense')->name('datatable.expense');
+    Route::get('datatable/supplier', 'DatatableController@supplier')->name('datatable.supplier');
+    Route::get('datatable/customer', 'DatatableController@customer')->name('datatable.customer');
     Route::get('datatable/sales/products/{id}', 'DatatableController@salesProducts')->name('datatable.sales.products');
 
     Route::get('search/product', 'SearchController@product')->name('search.product');

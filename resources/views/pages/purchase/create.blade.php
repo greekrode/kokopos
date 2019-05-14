@@ -32,6 +32,20 @@
                             </div>
 
                             <div class="form-group row">
+                                <label for="product"
+                                       class="col-sm-3 text-right control-label col-form-label">Supplier</label>
+                                <div class="col-sm-9">
+                                    <select class="select2 form-control custom-select" style="width: 100%; height:36px;"
+                                            name="supplier_id">
+                                        <option></option>
+                                        @foreach($suppliers as $supplier)
+                                            <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
                                 <label for="amount"
                                        class="col-sm-3 text-right control-label col-form-label">Quantity</label>
                                 <div class="col-sm-9">

@@ -13,7 +13,7 @@
         <div class="row">
             @if (Auth::user()->role === 'admin')
                 <!-- Column -->
-                <div class="col-md-6 col-lg-3 col-xlg-3">
+                <div class="col-md-6 col-lg-4 col-xlg-3">
                     <div class="card card-hover">
                         <div class="box bg-cyan text-center">
                             <h1 class="font-light text-white"><i class="mdi mdi-database"></i></h1>
@@ -22,7 +22,7 @@
                     </div>
                 </div>
                 <!-- Column -->
-                <div class="col-md-6 col-lg-3 col-xlg-3">
+                <div class="col-md-6 col-lg-4 col-xlg-3">
                     <div class="card card-hover">
                         <div class="box bg-info text-center">
                             <h1 class="font-light text-white"><i class="mdi mdi-receipt"></i></h1>
@@ -31,7 +31,7 @@
                     </div>
                 </div>
                 <!-- Column -->
-                <div class="col-md-6 col-lg-3 col-xlg-3">
+                <div class="col-md-6 col-lg-4 col-xlg-3">
                     <div class="card card-hover">
                         <div class="box bg-info text-center">
                             <h1 class="font-light text-white"><i class="mdi mdi-cash"></i></h1>
@@ -49,10 +49,36 @@
                     </div>
                 </div>
                 <!-- Column -->
+                <div class="col-md-6 col-lg-4 col-xlg-3">
+                    <div class="card card-hover">
+                        <div class="box bg-danger text-center">
+                            <h1 class="font-light text-white"><i class="mdi mdi-paperclip"></i></h1>
+                            <h6 class="text-white">Suppliers</h6>
+                        </div>
+                    </div>
+                </div>
+                <!-- Column -->
+                <div class="col-md-6 col-lg-4 col-xlg-3">
+                    <div class="card card-hover">
+                        <div class="box bg-danger text-center">
+                            <h1 class="font-light text-white"><i class="mdi mdi-nature-people"></i></h1>
+                            <h6 class="text-white">Expenses</h6>
+                        </div>
+                    </div>
+                </div>
+                <!-- Column -->
+                <div class="col-md-6 col-lg-4 col-xlg-3">
+                    <div class="card card-hover">
+                        <div class="box bg-danger text-center">
+                            <h1 class="font-light text-white"><i class="mdi mdi-account"></i></h1>
+                            <h6 class="text-white">Customers</h6>
+                        </div>
+                    </div>
+                </div>
             @endif
 
             <!-- Column -->
-            <div class="col-md-6 col-lg-3 col-xlg-3">
+            <div class="col-md-6 col-lg-4 col-xlg-3">
                 <div class="card card-hover">
                     <div class="box bg-warning text-center">
                         <h1 class="font-light text-white"><i class="mdi mdi-biohazard"></i></h1>
@@ -61,7 +87,7 @@
                 </div>
             </div>
             <!-- Column -->
-            <div class="col-md-6 col-lg-3 col-xlg-3">
+            <div class="col-md-6 col-lg-4 col-xlg-3">
                 <div class="card card-hover">
                     <div class="box bg-danger text-center">
                         <h1 class="font-light text-white"><i class="mdi mdi-cart"></i></h1>

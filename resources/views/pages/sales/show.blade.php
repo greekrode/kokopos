@@ -27,7 +27,7 @@
                             </div>
                             <div class="pull-right text-right">
                                 <address>
-                                    {{--<h3>To,</h3>--}}
+                                    <h2>To, {{ $sales->customer->name }}</h2>
                                     {{--<h4 class="font-bold">Gaala & Sons,</h4>--}}
                                     {{--<p class="text-muted m-l-30">E 104, Dharti-2,--}}
                                         {{--<br/> Nr' Viswakarma Temple,--}}

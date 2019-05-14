@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('title', 'Purchase')
+@section('title', 'Customer')
 
 @section('content')
     <!-- ============================================================== -->
@@ -14,8 +14,8 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h3 class="card-title float-left mb-3">Purchase Data</h3>
-                        <a class="card-title btn btn-primary float-right mb-3" href="{{ route('purchase.create') }}"><i class="mdi mdi-plus"></i> Add New</a>
+                        <h3 class="card-title float-left mb-3">Customer Data</h3>
+                        <a class="card-title btn btn-primary float-right mb-3" href="{{ route('customer.create') }}"><i class="mdi mdi-plus"></i> Add New</a>
                         <div class="table-responsive">
                             @if (session('success'))
                                 <div class="alert alert-success" role="alert">
@@ -28,15 +28,11 @@
                             @endif
                             <table id="zero_config" class="table table-bordered">
                                 <thead class="thead-dark">
-                                    <tr>
-                                        <th class="font-22 font-bold">ID</th>
-                                        <th class="font-22 font-bold">Product</th>
-                                        <th class="font-22 font-bold">Quantity</th>
-                                        <th class="font-22 font-bold">Price</th>
-                                        <th class="font-22 font-bold">Date</th>
-                                        <th class="font-22 font-bold">Supplier</th>
-                                        <th class="font-22 font-bold">Action</th>
-                                    </tr>
+                                <tr>
+                                    <th class="font-22 font-bold">ID</th>
+                                    <th class="font-22 font-bold">Name</th>
+                                    <th class="font-22 font-bold">Action</th>
+                                </tr>
                                 </thead>
                             </table>
                         </div>
@@ -66,15 +62,10 @@
             responsive: true,
             processing: true,
             serverSide: true,
-            order: [[4, "desc"]],
-            ajax: '{!! route('datatable.purchase') !!}',
+            ajax: '{!! route('datatable.customer') !!}',
             columns: [
                 { data: 'rownum', name: 'rownum', searchable: false},
-                { data: 'product.name', name: 'product.name' },
-                { data: 'qty', name: 'qty'},
-                { data: 'price', name: 'price', render: $.fn.dataTable.render.number( '.', ',', 0, 'Rp ' )},
-                { data: 'created_at', name: 'created_at'},
-                { data: 'supplier.name', name: 'supplier.name' },
+                { data: 'name', name: 'name' },
                 { data: 'action', name: 'action', orderable: false, searchable: false}
             ]
         });

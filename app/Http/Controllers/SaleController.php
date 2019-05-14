@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\Customer;
 use App\Model\Product;
 use App\Model\Sale;
 use App\Model\SalesDetail;
@@ -33,6 +34,7 @@ class SaleController extends Controller
     public function create()
     {
         $products = Product::all();
+        $customers = Customer::all();
 
         $count = Sale::count();
         $now = Carbon::now();
@@ -43,7 +45,8 @@ class SaleController extends Controller
 
         $data = [
             'products' => $products,
-            'sales_no' => $salesNumber
+            'sales_no' => $salesNumber,
+            'customers' => $customers
         ];
         return view('pages.sales.create')->with($data);
     }
@@ -61,6 +64,7 @@ class SaleController extends Controller
         $sales = new Sale();
         $sales->number = $request->salesNumber;
         $sales->total = $request->salesTotal;
+        $sales->customer_id = $request->salesCustomer;
 
         if (!$sales->save()) {
             \Session::flash('success', sprintf('%s', 'Sales number '.$request->salesNumber.' can not be created!'));

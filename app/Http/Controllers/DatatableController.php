@@ -12,6 +12,7 @@ use App\Model\Category;
 use App\Model\Expense;
 use App\Model\Product;
 use App\Model\Purchase;
+use App\Model\Sale;
 use App\Model\Stock;
 use function foo\func;
 use Illuminate\Support\Facades\DB;
@@ -62,14 +63,7 @@ class DatatableController extends Controller
     public function sales()
     {
         DB::statement(DB::raw('set @rownum=0'));
-        $sales = DB::table('sales')
-            ->select([
-                DB::raw('@rownum  := @rownum  + 1 AS rownum'),
-                'id',
-                'number',
-                'total',
-                'created_at'
-            ]);
+        $sales = Sale::info()->select(['sales.*', DB::raw('@rownum  := @rownum  + 1 AS rownum')]);
 
         return Datatables::of($sales)
             ->addColumn('action', function ($sales) {
@@ -130,6 +124,40 @@ class DatatableController extends Controller
             })
             ->addIndexColumn()
             ->make(true);
+    }
+
+    public function supplier()
+    {
+        DB::statement(DB::raw('set @rownum=0'));
+        $suppliers = DB::table('suppliers')
+            ->select([
+                DB::raw('@rownum  := @rownum  + 1 AS rownum'),
+                'id',
+                'name',
+            ]);
+
+        return Datatables::of($suppliers)
+            ->addColumn('action', function ($suppliers) {
+                return view('pages.supplier.action', compact('suppliers'))->render();
+            })
+            ->make(true);
+    }
+
+    public function customer() {
+        DB::statement(DB::raw('set @rownum=0'));
+        $customers = DB::table('customers')
+            ->select([
+                DB::raw('@rownum  := @rownum  + 1 AS rownum'),
+                'id',
+                'name',
+            ]);
+
+        return Datatables::of($customers)
+            ->addColumn('action', function ($customers) {
+                return view('pages.customer.action', compact('customers'))->render();
+            })
+            ->make(true);
+
     }
 
 }

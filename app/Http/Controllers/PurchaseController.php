@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Model\Product;
 use App\Model\Purchase;
 use App\Model\Stock;
+use App\Model\Supplier;
 use Illuminate\Http\Request;
 
 class PurchaseController extends Controller
@@ -27,7 +28,14 @@ class PurchaseController extends Controller
     public function create()
     {
         $products = Product::all();
-        return view('pages.purchase.create')->with('products', $products);
+        $suppliers = Supplier::all();
+
+        $data = [
+            'products' => $products,
+            'suppliers' => $suppliers
+        ];
+
+        return view('pages.purchase.create')->with($data);
     }
 
     /**
@@ -44,7 +52,8 @@ class PurchaseController extends Controller
         $purchase = new Purchase([
             'product_id' => $request->product_id,
             'qty' => $request->amount,
-            'price' => $request->price
+            'price' => $request->price,
+            'supplier_id' => $request->supplier_id
         ]);
         $purchase->save();
 

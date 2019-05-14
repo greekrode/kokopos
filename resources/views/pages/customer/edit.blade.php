@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('title', 'Category')
+@section('title', 'Customer')
 
 @section('content')
     <!-- ============================================================== -->
@@ -13,19 +13,18 @@
         <div class="row">
             <div class="col-md-8 mx-auto">
                 <div class="card">
-                    <form class="form-horizontal" method="POST" action="{{ route('product.update', $product->id)  }}">
-                        @method('PATCH')
-                        @csrf
+                    <form class="form-horizontal" method="POST" action="{{ route('customer.update', $customer->id)  }}">
                         <div class="card-body">
-                            <h4 class="card-title">Edit product</h4>
+                            <h4 class="card-title">Edit customer</h4>
+                            @method('PATCH')
+                            @csrf
                             <div class="form-group row">
-                                @csrf
-                                <label for="name" class="col-sm-3 text-right control-label col-form-label">Name</label>
+                                <label for="amount" class="col-sm-3 text-right control-label col-form-label">Customer Name</label>
                                 <div class="col-sm-9">
-                                    <input type="text" id="name" name="name" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" value="{{ $product->name  }}" autofocus>
-                                    @if ($errors->has('name'))
+                                    <input type="text" id="name" name="name" value="{{ $customer->name }}" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" placeholder="Customer name" autofocus>
+                                    @if ($errors->has('amount'))
                                         <div class="invalid-feedback">
-                                            {{ $errors->first('name') }}
+                                            {{ $errors->first('amount') }}
                                         </div>
                                     @endif
                                 </div>

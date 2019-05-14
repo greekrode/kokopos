@@ -60,6 +60,19 @@
                         </div>
 
                         <div class="card-body">
+                            <h2 class="card-title float-left">Customer</h2>
+                            <div class="float-right" style="width: 250px">
+                                <select class="select2 form-control custom-select" id="customer_id"
+                                        name="customer_id">
+                                    <option></option>
+                                    @foreach($customers as $customer)
+                                        <option value="{{ $customer->id }}">{{ $customer->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="card-body">
                             <h2 class="card-title float-left">Total</h2>
                             <h2 class="float-right text-primary" id="sales-total">Rp <span id="sales-total-text">0</span></h2>
                         </div>
@@ -255,6 +268,7 @@
         $('#submit').on('click', function() {
             let allItemArray = [];
             let data = table.rows().data();
+            let paymentAmount = parseInt($('#payment-amount').val().replace('.',""));
 
             table.rows().every(function (rowIdx, tableLoop, rowLoop) {
                 allItemArray.push({
@@ -263,22 +277,30 @@
                 });
             });
 
+
             if (allItemArray.length === 0) {
                 toastr.error('Please input product first!', 'Error!');
             } else {
-                $.ajax({
-                    url: '{{ route('sales.store') }}',
-                    method: 'post',
-                    data: {
-                        itemData: allItemArray,
-                        salesTotal: $('#sales-total-text').html().replace(".",""),
-                        salesNumber: $('#sales_no').val()
-                    },
-                    success: function(response)
-                    {
-                        window.location = '/sales';
-                    }
-                });
+                if (paymentAmount > 0) {
+                    $.ajax({
+                        url: '{{ route('sales.store') }}',
+                        method: 'post',
+                        data: {
+                            itemData: allItemArray,
+                            salesTotal: $('#sales-total-text').html().replace(".", ""),
+                            salesNumber: $('#sales_no').val(),
+                            salesCustomer: $('#customer_id :selected').val()
+                        },
+                        success: function () {
+                            window.location = '/sales';
+                        },
+                        fail: function () {
+                            toastr.error('Something is wrong! Please try again!', 'Error!');
+                        }
+                    });
+                } else {
+                    toastr.error('Please input payment first!', 'Error!');
+                }
             }
         });
     </script>
@@ -299,7 +321,7 @@
             buttons: {
                 "Submit": function() {
                     let paymentAmount = parseInt($('#payment-amount').val().replace('.',""));
-                    let totalAmount = parseInt($('#sales-total-text').html().replace('.', ""))
+                    let totalAmount = parseInt($('#sales-total-text').html().replace('.', ""));
 
                     $('#payment-text').text(numberWithCommas(paymentAmount));
 
