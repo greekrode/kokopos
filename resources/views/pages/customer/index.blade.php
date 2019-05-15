@@ -31,6 +31,7 @@
                                 <tr>
                                     <th class="font-22 font-bold">ID</th>
                                     <th class="font-22 font-bold">Name</th>
+                                    <th class="font-22 font-bold">Phone number</th>
                                     <th class="font-22 font-bold">Action</th>
                                 </tr>
                                 </thead>
@@ -66,6 +67,7 @@
             columns: [
                 { data: 'rownum', name: 'rownum', searchable: false},
                 { data: 'name', name: 'name' },
+                { data: 'phone_number', name: 'phone_number' },
                 { data: 'action', name: 'action', orderable: false, searchable: false}
             ]
         });

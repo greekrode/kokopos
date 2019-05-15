@@ -15,7 +15,6 @@
                 <div class="card">
                     <div class="card-body">
                         <h3 class="card-title float-left mb-3">Stock Data</h3>
-                        <a class="card-title btn btn-primary float-right mb-3" href="{{ route('stock.create') }}"><i class="mdi mdi-plus"></i> Add New</a>
                         <div class="table-responsive">
                             @if (session('success'))
                                 <div class="alert alert-success" role="alert">

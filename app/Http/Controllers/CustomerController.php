@@ -37,6 +37,7 @@ class CustomerController extends Controller
     {
         $customer = new Customer();
         $customer->name = $request->name;
+        $customer->phone_number = $request->phone;
         $customer->save();
 
         return redirect()->action('CustomerController@index')->with('success', sprintf('%s', 'Customer '. $customer->name.' has been added!'));
@@ -77,6 +78,7 @@ class CustomerController extends Controller
     {
         $customer = Customer::find($id);
         $customer->name = $request->name;
+        $customer->phone_number = $request->phone;
         $customer->save();
 
         return redirect()->action('CustomerController@index')->with('success', sprintf('%s', 'Customer  '. $customer->name.' has been updated!'));

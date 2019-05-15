@@ -28,6 +28,17 @@
                                     @endif
                                 </div>
                             </div>
+                            <div class="form-group row">
+                                <label for="phone" class="col-sm-3 text-right control-label col-form-label">Phone number</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="phone" name="phone" class="form-control {{ $errors->has('phone_number') ? 'is-invalid' : '' }}" placeholder="Phone number" autofocus>
+                                    @if ($errors->has('phone_number'))
+                                        <div class="invalid-feedback">
+                                            {{ $errors->first('phone_number') }}
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
                         </div>
                         <div class="border-top">
                             <div class="card-body text-right">

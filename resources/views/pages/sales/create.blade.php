@@ -323,9 +323,8 @@
                     let paymentAmount = parseInt($('#payment-amount').val().replace('.',""));
                     let totalAmount = parseInt($('#sales-total-text').html().replace('.', ""));
 
-                    $('#payment-text').text(numberWithCommas(paymentAmount));
-
                     if (paymentAmount >= totalAmount) {
+                        $('#payment-text').text(numberWithCommas(paymentAmount));
                         $('#change-text').text(numberWithCommas(paymentAmount - totalAmount));
                         $( this ).dialog( "close" );
                         $('#error-p').css("display", "none");

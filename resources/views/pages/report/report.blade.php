@@ -83,14 +83,14 @@
                                     <td style="font-weight: bold;">Rp {{ number_format($subTotalPrice, 2) }}</td>
                                     <td style="font-weight: bold; color: green">Rp {{ number_format($subTotalRevenue, 2) }}</td>
                                 </tr>
+                                @php
+                                    $unsoldTotalQty = 0;
+                                    $unsoldTotalPrice = 0;
+                                @endphp
                                 @if(count($resetStocks) > 0)
                                     <tr>
                                         <td colspan="7" class="font-22 font-bold">Unsold items</td>
                                     </tr>
-                                    @php
-                                        $unsoldTotalQty = 0;
-                                        $unsoldTotalPrice = 0;
-                                    @endphp
                                     @foreach($resetStocks as $rs)
                                         @php
                                             $unsoldTotalQty += $rs->qty;
@@ -114,13 +114,13 @@
                                         <td style="font-weight: bold; color: red;">Rp {{ number_format($unsoldTotalPrice, 2) }}</td>
                                     </tr>
                                 @endif
+                                @php
+                                    $expenseTotalPrice = 0;
+                                @endphp
                                 @if(count($expenses) > 0)
                                     <tr>
                                         <td colspan="7" class="font-22 font-bold">Other expenses</td>
                                     </tr>
-                                    @php
-                                        $expenseTotalPrice = 0;
-                                    @endphp
                                     @foreach($expenses as $expense)
                                         @php
                                             $expenseTotalPrice += $expense->price;

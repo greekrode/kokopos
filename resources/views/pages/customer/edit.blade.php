@@ -19,12 +19,23 @@
                             @method('PATCH')
                             @csrf
                             <div class="form-group row">
-                                <label for="amount" class="col-sm-3 text-right control-label col-form-label">Customer Name</label>
+                                <label for="name" class="col-sm-3 text-right control-label col-form-label">Customer Name</label>
                                 <div class="col-sm-9">
                                     <input type="text" id="name" name="name" value="{{ $customer->name }}" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" placeholder="Customer name" autofocus>
-                                    @if ($errors->has('amount'))
+                                    @if ($errors->has('name'))
                                         <div class="invalid-feedback">
-                                            {{ $errors->first('amount') }}
+                                            {{ $errors->first('name') }}
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="phone" class="col-sm-3 text-right control-label col-form-label">Phone number</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="phone" name="phone" value="{{ $customer->phone_number }}" class="form-control {{ $errors->has('phone_number') ? 'is-invalid' : '' }}" placeholder="Phone number" autofocus>
+                                    @if ($errors->has('phone_number'))
+                                        <div class="invalid-feedback">
+                                            {{ $errors->first('phone_number') }}
                                         </div>
                                     @endif
                                 </div>

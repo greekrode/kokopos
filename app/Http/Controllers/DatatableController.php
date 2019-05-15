@@ -150,6 +150,7 @@ class DatatableController extends Controller
                 DB::raw('@rownum  := @rownum  + 1 AS rownum'),
                 'id',
                 'name',
+                'phone_number'
             ]);
 
         return Datatables::of($customers)
