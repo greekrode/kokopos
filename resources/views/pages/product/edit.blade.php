@@ -17,9 +17,9 @@
                         <div class="card-body">
                             @method('PATCH')
                             @csrf
-                            <h4 class="card-title">Edit Product</h4>
+                            <h4 class="card-title">Edit Produk</h4>
                             <div class="form-group row">
-                                <label for="name" class="col-sm-3 text-right control-label col-form-label">Name</label>
+                                <label for="name" class="col-sm-3 text-right control-label col-form-label">Nama</label>
                                 <div class="col-sm-9">
                                     <input type="text" id="name" name="name" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" placeholder="Product Name" value="{{ $product->name }}" autofocus>
                                     @if ($errors->has('name'))
@@ -31,7 +31,7 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="capital_price" class="col-sm-3 text-right control-label col-form-label">Capital Price</label>
+                                <label for="capital_price" class="col-sm-3 text-right control-label col-form-label">Harga Modal</label>
                                 <div class="col-sm-9">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
@@ -48,7 +48,7 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="selling_price" class="col-sm-3 text-right control-label col-form-label">Selling Price</label>
+                                <label for="selling_price" class="col-sm-3 text-right control-label col-form-label">Harga Jual</label>
                                 <div class="col-sm-9">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
@@ -65,7 +65,7 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="image" class="col-sm-3 text-right control-label col-form-label">Image</label>
+                                <label for="image" class="col-sm-3 text-right control-label col-form-label">Gambar</label>
                                 <div class="col-sm-9">
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="image" name="image">
@@ -80,7 +80,7 @@
                             </div>
 
 {{--                            <div class="form-group row">--}}
-{{--                                <label for="category" class="col-sm-3 text-right control-label col-form-label">Category</label>--}}
+{{--                                <label for="category" class="col-sm-3 text-right control-label col-form-label">Kategori</label>--}}
 {{--                                <div class="col-sm-9">--}}
 {{--                                    <select class="select2 form-control custom-select" style="width: 100%; height:36px;" name="category_id">--}}
 {{--                                        <option> </option>--}}

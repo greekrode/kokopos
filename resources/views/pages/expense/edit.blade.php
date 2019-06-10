@@ -15,12 +15,12 @@
                 <div class="card">
                     <form class="form-horizontal" method="POST" action="{{ route('expense.update', $expense->id)  }}">
                         <div class="card-body">
-                            <h4 class="card-title">Edit expense</h4>
+                            <h4 class="card-title">Edit Biaya Tambahan </h4>
                             @method('PATCH')
                             @csrf
 
                             <div class="form-group row">
-                                <label for="amount" class="col-sm-3 text-right control-label col-form-label">Product Name</label>
+                                <label for="amount" class="col-sm-3 text-right control-label col-form-label">Nama Produk</label>
                                 <div class="col-sm-9">
                                     <input type="text"
                                            id="name"
@@ -31,7 +31,7 @@
 
                             <div class="form-group row">
                                 <label for="price"
-                                       class="col-sm-3 text-right control-label col-form-label">Price</label>
+                                       class="col-sm-3 text-right control-label col-form-label">Harga</label>
                                 <div class="col-sm-9">
                                     <input type="number" id="price" name="price"
                                            value="{{ $expense->price }}"

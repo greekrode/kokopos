@@ -14,22 +14,22 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h3 class="card-title float-left mb-3">Income Report</h3>
+                        <h3 class="card-title float-left mb-3">Laporan Laba Rugi</h3>
                         <div class="table-responsive">
                             <table class="table table-bordered">
                                 <thead class="thead-dark">
                                 <tr>
                                     <th class="font-22 font-bold" width="10%">#</th>
-                                    <th class="font-22 font-bold" colspan="6">Invoice Number</th>
+                                    <th class="font-22 font-bold" colspan="6">Nomor Invoice</th>
                                 </tr>
                                 <tr>
                                     <th></th>
-                                    <th class="font-22 font-bold">Product Name</th>
-                                    <th class="font-22 font-bold">Capital Price</th>
-                                    <th class="font-22 font-bold">Price</th>
+                                    <th class="font-22 font-bold">Nama Produk</th>
+                                    <th class="font-22 font-bold">Harga Modal</th>
+                                    <th class="font-22 font-bold">Harga Jual</th>
                                     <th class="font-22 font-bold">Qty</th>
-                                    <th class="font-22 font-bold">Total Price</th>
-                                    <th class="font-22 font-bold">Revenue / Expense</th>
+                                    <th class="font-22 font-bold">Total Harga</th>
+                                    <th class="font-22 font-bold">Laba / Rugi</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -89,7 +89,7 @@
                                 @endphp
                                 @if(count($resetStocks) > 0)
                                     <tr>
-                                        <td colspan="7" class="font-22 font-bold">Unsold items</td>
+                                        <td colspan="7" class="font-22 font-bold">Barang Tidak Terjual</td>
                                     </tr>
                                     @foreach($resetStocks as $rs)
                                         @php

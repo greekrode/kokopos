@@ -16,11 +16,11 @@
                     <form class="form-horizontal" method="POST" action="{{ route('product.store')  }}" enctype="multipart/form-data">
                         <div class="card-body">
                             @csrf
-                            <h4 class="card-title">New Product</h4>
+                            <h4 class="card-title">Produk Baru </h4>
                             <div class="form-group row">
-                                <label for="name" class="col-sm-3 text-right control-label col-form-label">Name</label>
+                                <label for="name" class="col-sm-3 text-right control-label col-form-label">Nama</label>
                                 <div class="col-sm-9">
-                                    <input type="text" id="name" name="name" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" placeholder="Product Name" autofocus>
+                                    <input type="text" id="name" name="name" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" placeholder="Nama Produk" autofocus>
                                     @if ($errors->has('name'))
                                         <div class="invalid-feedback">
                                             {{ $errors->first('name') }}
@@ -30,13 +30,13 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="capital_price" class="col-sm-3 text-right control-label col-form-label">Capital Price</label>
+                                <label for="capital_price" class="col-sm-3 text-right control-label col-form-label">Harga Modal</label>
                                 <div class="col-sm-9">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1">Rp</span>
                                         </div>
-                                        <input type="text" id="capital_price" name="capital_price" class="form-control" placeholder="Capital Price" aria-label="Capital Price" aria-describedby="basic-addon1">
+                                        <input type="text" id="capital_price" name="capital_price" class="form-control" placeholder="Harga Modal" aria-label="Capital Price" aria-describedby="basic-addon1">
                                         @if ($errors->has('capital_price'))
                                             <div class="invalid-feedback">
                                                 {{ $errors->first('capital_price') }}
@@ -47,13 +47,13 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="selling_price" class="col-sm-3 text-right control-label col-form-label">Selling Price</label>
+                                <label for="selling_price" class="col-sm-3 text-right control-label col-form-label">Harga Jual</label>
                                 <div class="col-sm-9">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1">Rp</span>
                                         </div>
-                                        <input type="text" id="selling_price" name="selling_price" class="form-control" placeholder="Selling Price" aria-label="Selling Price" aria-describedby="basic-addon1">
+                                        <input type="text" id="selling_price" name="selling_price" class="form-control" placeholder="Harga Jual" aria-label="Selling Price" aria-describedby="basic-addon1">
                                         @if ($errors->has('capital_price'))
                                             <div class="invalid-feedback">
                                                 {{ $errors->first('capital_price') }}
@@ -64,7 +64,7 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="image" class="col-sm-3 text-right control-label col-form-label">Image</label>
+                                <label for="image" class="col-sm-3 text-right control-label col-form-label">Gambar</label>
                                 <div class="col-sm-9">
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="image" name="image">
@@ -79,7 +79,7 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="category" class="col-sm-3 text-right control-label col-form-label">Category</label>
+                                <label for="category" class="col-sm-3 text-right control-label col-form-label">Kategori</label>
                                 <div class="col-sm-9">
                                     <select class="select2 form-control custom-select" style="width: 100%; height:36px;" name="category_id">
                                         <option> </option>

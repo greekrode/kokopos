@@ -15,12 +15,12 @@
                 <div class="card">
                     <form class="form-horizontal" method="POST" action="{{ route('category.store')  }}">
                         <div class="card-body">
-                            <h4 class="card-title">New category</h4>
+                            <h4 class="card-title">Kategori Baru</h4>
                             <div class="form-group row">
                                 @csrf
-                                <label for="name" class="col-sm-3 text-right control-label col-form-label">Name</label>
+                                <label for="name" class="col-sm-3 text-right control-label col-form-label">Nama</label>
                                 <div class="col-sm-9">
-                                    <input type="text" id="name" name="name" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" placeholder="Category Name Here" autofocus>
+                                    <input type="text" id="name" name="name" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" placeholder="Nama Kategori" autofocus>
                                     @if ($errors->has('name'))
                                         <div class="invalid-feedback">
                                             {{ $errors->first('name') }}

@@ -14,8 +14,8 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h3 class="card-title float-left mb-3">Sales Data</h3>
-                        <a class="card-title btn btn-primary float-right mb-3" href="{{ route('sales.create') }}"><i class="mdi mdi-plus"></i> Add New</a>
+                        <h3 class="card-title float-left mb-3">Data Penjualan</h3>
+                        <a class="card-title btn btn-primary float-right mb-3" href="{{ route('sales.create') }}"><i class="mdi mdi-plus"></i> Tambah Data</a>
                         <div class="table-responsive">
                             @if (session('success'))
                                 <div class="alert alert-success" role="alert">
@@ -30,11 +30,11 @@
                                 <thead class="thead-dark">
                                     <tr>
                                         <th class="font-22 font-bold">ID</th>
-                                        <th class="font-22 font-bold">Number</th>
-                                        <th class="font-22 font-bold">Date</th>
+                                        <th class="font-22 font-bold">Nomer</th>
+                                        <th class="font-22 font-bold">Tanggal</th>
                                         <th class="font-22 font-bold">Total</th>
-                                        <th class="font-22 font-bold">Customer</th>
-                                        <th class="font-22 font-bold">Action</th>
+                                        <th class="font-22 font-bold">Konsumen</th>
+                                        <th class="font-22 font-bold">Aksi</th>
                                     </tr>
                                 </thead>
                             </table>

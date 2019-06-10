@@ -15,11 +15,11 @@
                 <div class="card">
                     <form class="form-horizontal" method="POST" action="{{ route('stock.update', $stock->id)  }}">
                         <div class="card-body">
-                            <h4 class="card-title">Edit stock</h4>
+                            <h4 class="card-title">Edit stok</h4>
                             @method('PATCH')
                             @csrf
                             <div class="form-group row">
-                                <label for="amount" class="col-sm-3 text-right control-label col-form-label">Amount</label>
+                                <label for="amount" class="col-sm-3 text-right control-label col-form-label">Jumlah</label>
                                 <div class="col-sm-9">
                                     <input type="number" id="amount" name="amount" value="{{ $stock->stock }}" class="form-control {{ $errors->has('amount') ? 'is-invalid' : '' }}" placeholder="Stock amount" autofocus>
                                     @if ($errors->has('amount'))

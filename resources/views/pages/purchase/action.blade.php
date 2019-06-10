@@ -2,5 +2,5 @@
 <form action="{{ route('purchase.destroy', $purchases->id)}}" method="post" style="display: inline-block">
     @csrf
     @method('DELETE')
-    <button class="btn btn-md btn-danger" type="submit" onclick="if (!confirm('Are you sure you want to delete this?')) { return false }"><i class="mdi mdi-delete"> Delete</i></button>
+    <button class="btn btn-md btn-danger" type="submit" onclick="if (!confirm('Apakah anda yakin untuk menghapusnya?')) { return false }"><i class="mdi mdi-delete"> Hapus</i></button>
 </form>

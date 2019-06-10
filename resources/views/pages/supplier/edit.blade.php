@@ -19,7 +19,7 @@
                             @method('PATCH')
                             @csrf
                             <div class="form-group row">
-                                <label for="amount" class="col-sm-3 text-right control-label col-form-label">Supplier Name</label>
+                                <label for="amount" class="col-sm-3 text-right control-label col-form-label">Nama Supplier</label>
                                 <div class="col-sm-9">
                                     <input type="text" id="name" name="name" value="{{ $supplier->name }}" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" placeholder="Supplier name" autofocus>
                                     @if ($errors->has('amount'))

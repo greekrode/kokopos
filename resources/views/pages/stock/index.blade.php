@@ -14,7 +14,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h3 class="card-title float-left mb-3">Stock Data</h3>
+                        <h3 class="card-title float-left mb-3">Data Stok</h3>
                         <div class="table-responsive">
                             @if (session('success'))
                                 <div class="alert alert-success" role="alert">
@@ -29,9 +29,9 @@
                                 <thead class="thead-dark">
                                     <tr>
                                         <th class="font-22 font-bold">ID</th>
-                                        <th class="font-22 font-bold">Product</th>
-                                        <th class="font-22 font-bold">Stock</th>
-                                        <th class="font-22 font-bold">Action</th>
+                                        <th class="font-22 font-bold">Produk</th>
+                                        <th class="font-22 font-bold">Stok</th>
+                                        <th class="font-22 font-bold">Aksi</th>
                                     </tr>
                                 </thead>
                             </table>
@@ -80,7 +80,7 @@
             });
             var url = $(this).data('remote');
             // confirm then
-            if (confirm('Are you sure you want to delete this?')) {
+            if (confirm('Apakah anda yakin untuk menghapusnya?')) {
                 $.ajax({
                     url: url,
                     type: 'DELETE',

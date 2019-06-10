@@ -14,8 +14,8 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h3 class="card-title float-left mb-3">Expense Data</h3>
-                        <a class="card-title btn btn-primary float-right mb-3" href="{{ route('expense.create') }}"><i class="mdi mdi-plus"></i> Add New</a>
+                        <h3 class="card-title float-left mb-3">Data Biaya Tambahan </h3>
+                        <a class="card-title btn btn-primary float-right mb-3" href="{{ route('expense.create') }}"><i class="mdi mdi-plus"></i> Tambah Data</a>
                         <div class="table-responsive">
                             @if (session('success'))
                                 <div class="alert alert-success" role="alert">
@@ -30,10 +30,10 @@
                                 <thead class="thead-dark">
                                     <tr>
                                         <th class="font-22 font-bold">ID</th>
-                                        <th class="font-22 font-bold">Name</th>
-                                        <th class="font-22 font-bold">Price</th>
-                                        <th class="font-22 font-bold">Date</th>
-                                        <th class="font-22 font-bold">Action</th>
+                                        <th class="font-22 font-bold">Nama</th>
+                                        <th class="font-22 font-bold">Harga</th>
+                                        <th class="font-22 font-bold">Tanggal</th>
+                                        <th class="font-22 font-bold">Aksi</th>
                                     </tr>
                                 </thead>
                             </table>
@@ -84,7 +84,7 @@
             });
             var url = $(this).data('remote');
             // confirm then
-            if (confirm('Are you sure you want to delete this?')) {
+            if (confirm('Apakah anda yakin untuk menghapusnya?')) {
                 $.ajax({
                     url: url,
                     type: 'DELETE',

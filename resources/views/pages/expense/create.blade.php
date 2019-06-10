@@ -15,11 +15,11 @@
                 <div class="card">
                     <form class="form-horizontal" method="POST" action="{{ route('expense.store')  }}">
                         <div class="card-body">
-                            <h4 class="card-title">New expense</h4>
+                            <h4 class="card-title">Biaya Tambahan</h4>
                             @csrf
                             <div class="form-group row">
                                 <label for="product"
-                                       class="col-sm-3 text-right control-label col-form-label">Product</label>
+                                       class="col-sm-3 text-right control-label col-form-label">Produk</label>
                                 <div class="col-sm-9">
                                     <select class="select2 form-control custom-select" style="width: 100%; height:36px;"
                                             name="product_id">
@@ -33,11 +33,11 @@
 
                             <div class="form-group row">
                                 <label for="price"
-                                       class="col-sm-3 text-right control-label col-form-label">Price</label>
+                                       class="col-sm-3 text-right control-label col-form-label">Harga</label>
                                 <div class="col-sm-9">
                                     <input type="number" id="price" name="price"
                                            class="form-control {{ $errors->has('price') ? 'is-invalid' : '' }}"
-                                           placeholder="Expense Price" autofocus>
+                                           placeholder="Harga Pengeluaran" autofocus>
                                     @if ($errors->has('price'))
                                         <div class="invalid-feedback">
                                             {{ $errors->first('price') }}

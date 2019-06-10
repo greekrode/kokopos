@@ -14,7 +14,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h3 class="card-title float-left mb-3">Purchase Report</h3>
+                        <h3 class="card-title float-left mb-3">Laporan Pembelian</h3>
                         <div class="table-responsive">
                             @if (session('success'))
                                 <div class="alert alert-success" role="alert">
@@ -29,11 +29,11 @@
                                 <thead class="thead-dark">
                                 <tr>
                                     <th class="font-22 font-bold" width="10%">#</th>
-                                    <th class="font-22 font-bold">Product Name</th>
-                                    <th class="font-22 font-bold">Date</th>
-                                    <th class="font-22 font-bold">Price </th>
-                                    <th class="font-22 font-bold">Amount</th>
-                                    <th class="font-22 font-bold">Total Price</th>
+                                    <th class="font-22 font-bold">Nama Produk</th>
+                                    <th class="font-22 font-bold">Tanggal</th>
+                                    <th class="font-22 font-bold">Harga </th>
+                                    <th class="font-22 font-bold">Jumlah</th>
+                                    <th class="font-22 font-bold">Total Harga</th>
                                 </tr>
                                 </thead>
                                 <tbody>

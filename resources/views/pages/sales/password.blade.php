@@ -27,7 +27,7 @@
         <div class="auth-box bg-dark border-top border-secondary">
             <div id="loginform">
                 <div class="text-center p-t-20 p-b-20">
-                    <h1>Delete Password</h1>
+                    <h1>Hapus Password</h1>
                 </div>
                 <!-- Form -->
                 <form method="post" class="form-horizontal m-t-20" action="{{ route('delete.sales_destroy', $sale->id)}}">

@@ -14,7 +14,7 @@
             <div class="col-md-8 mx-auto">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Products</h4>
+                        <h4 class="card-title">Produk</h4>
                         <div class="form-group row">
                             <div class="col-md-12">
                                 <select id="products" name="product_list[]" class="form-control"></select>
@@ -24,19 +24,19 @@
                     </div>
 
                     <div class="card-body">
-                        <h5 class="card-title">Product List</h5>
+                        <h5 class="card-title">List Produk</h5>
                         <div class="form-group row">
                             <div class="table-responsive col-md-12">
                                 <table id="zero_config" class="table table-bordered">
                                     <thead class="thead-dark">
                                     <tr>
                                         <th class="font-22 font-bold" width="5%">ID</th>
-                                        <th class="font-22 font-bold" width="25%">Name</th>
-                                        <th class="font-22 font-bold" width="20%">Image</th>
-                                        <th class="font-22 font-bold" width="15%">Price</th>
-                                        <th class="font-22 font-bold" width="15%">Quantity</th>
+                                        <th class="font-22 font-bold" width="25%">Nama</th>
+                                        <th class="font-22 font-bold" width="20%">Gambar</th>
+                                        <th class="font-22 font-bold" width="15%">Harga</th>
+                                        <th class="font-22 font-bold" width="15%">Qty</th>
                                         <th class="font-22 font-bold" width="15%">Subtotal</th>
-                                        <th class="font-22 font-bold" width="10%">Action</th>
+                                        <th class="font-22 font-bold" width="10%">Aksi</th>
                                         <th id="item-id" style="display: none">Item ID</th>
                                     </tr>
                                     </thead>
@@ -50,17 +50,17 @@
             <div class="col-md-4 mx-auto">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Sales Data</h4>
+                            <h4 class="card-title">Data Penjualan</h4>
                         </div>
 
                         <div class="card-body">
-                            <h2 class="card-title float-left">Invoice number</h2>
+                            <h2 class="card-title float-left">Nomor Invoice</h2>
                             <h4 class="float-right" style="margin-top: 8px">{{ $sales_no }}</h4>
                             <input type="hidden" id="sales_no" name="sales_no" value="{{ $sales_no }}">
                         </div>
 
                         <div class="card-body">
-                            <h2 class="card-title float-left">Customer</h2>
+                            <h2 class="card-title float-left">Konsumen</h2>
                             <div class="float-right" style="width: 250px">
                                 <select class="select2 form-control custom-select" id="customer_id"
                                         name="customer_id">
@@ -78,7 +78,7 @@
                         </div>
 
                         <div class="card-body">
-                            <h2 class="card-title float-left">Payment</h2>
+                            <h2 class="card-title float-left">Pembayaran</h2>
                             <h2 class="float-right text-warning" id="payment">Rp <span id="payment-text">0  </span> <button class="btn btn-xs btn-success" id="opener" style="margin-bottom: 5px;"><i class="mdi mdi-plus"></i></button></h2>
                         </div>
 
@@ -93,7 +93,7 @@
                         </div>
 
                         <div class="card-body">
-                            <h2 class="card-title float-left">Change</h2>
+                            <h2 class="card-title float-left">Ubah</h2>
                             <h2 class="float-right text-danger" id="change">Rp <span id="change-text">0</span></h2>
                         </div>
 
@@ -122,7 +122,7 @@
 @push('scripts')
     <script type="text/javascript">
         $('#products').select2({
-            placeholder: "Choose products...",
+            placeholder: "Pilih produk...",
             minimumInputLength: 2,
             ajax: {
                 url: '{{ route('search.product') }}',

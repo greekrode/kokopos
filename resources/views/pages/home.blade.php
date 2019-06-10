@@ -18,7 +18,7 @@
                         <div class="card card-hover">
                             <div class="box bg-cyan text-center">
                                 <h1 class="font-light text-white"><i class="mdi mdi-database"></i></h1>
-                                <h6 class="text-white">Category</h6>
+                                <h6 class="text-white">Kategori</h6>
                             </div>
                         </div>
                     </a>
@@ -29,7 +29,7 @@
                     <div class="card card-hover">
                         <div class="box bg-info text-center">
                             <h1 class="font-light text-white"><i class="mdi mdi-receipt"></i></h1>
-                            <h6 class="text-white">Stocks</h6>
+                            <h6 class="text-white">Stok</h6>
                         </div>
                     </div>
                     </a>
@@ -40,7 +40,7 @@
                     <div class="card card-hover">
                         <div class="box bg-info text-center">
                             <h1 class="font-light text-white"><i class="mdi mdi-cash"></i></h1>
-                            <h6 class="text-white">Purchases</h6>
+                            <h6 class="text-white">Pembelian</h6>
                         </div>
                     </div>
                     </a>
@@ -51,7 +51,7 @@
                     <div class="card card-hover">
                         <div class="box bg-danger text-center">
                             <h1 class="font-light text-white"><i class="mdi mdi-paperclip"></i></h1>
-                            <h6 class="text-white">Revenue Report</h6>
+                            <h6 class="text-white">Laporan Laba</h6>
                         </div>
                     </div>
                     </a>
@@ -61,7 +61,7 @@
                     <div class="card card-hover">
                         <div class="box bg-danger text-center">
                             <h1 class="font-light text-white"><i class="mdi mdi-paperclip"></i></h1>
-                            <h6 class="text-white">Purchase Report</h6>
+                            <h6 class="text-white">Laporan Pembelian</h6>
                         </div>
                     </div>
                     </a>
@@ -83,7 +83,7 @@
                     <div class="card card-hover">
                         <div class="box bg-danger text-center">
                             <h1 class="font-light text-white"><i class="mdi mdi-nature-people"></i></h1>
-                            <h6 class="text-white">Expenses</h6>
+                            <h6 class="text-white">Tambahan Biaya</h6>
                         </div>
                     </div>
                     </a>
@@ -94,7 +94,7 @@
                     <div class="card card-hover">
                         <div class="box bg-danger text-center">
                             <h1 class="font-light text-white"><i class="mdi mdi-account"></i></h1>
-                            <h6 class="text-white">Customers</h6>
+                            <h6 class="text-white">Konsumen</h6>
                         </div>
                     </div>
                     </a>
@@ -107,7 +107,7 @@
                 <div class="card card-hover">
                     <div class="box bg-warning text-center">
                         <h1 class="font-light text-white"><i class="mdi mdi-biohazard"></i></h1>
-                        <h6 class="text-white">Product</h6>
+                        <h6 class="text-white">Produk</h6>
                     </div>
                 </div>
                 </a>
@@ -118,7 +118,7 @@
                 <div class="card card-hover">
                     <div class="box bg-danger text-center">
                         <h1 class="font-light text-white"><i class="mdi mdi-cart"></i></h1>
-                        <h6 class="text-white">Sales</h6>
+                        <h6 class="text-white">Penjualan</h6>
                     </div>
                 </div>
                 </a>

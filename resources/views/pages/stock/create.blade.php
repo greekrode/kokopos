@@ -15,10 +15,10 @@
                 <div class="card">
                     <form class="form-horizontal" method="POST" action="{{ route('stock.store')  }}">
                         <div class="card-body">
-                            <h4 class="card-title">New stock</h4>
+                            <h4 class="card-title">Stok Baru</h4>
                                 @csrf
                             <div class="form-group row">
-                                <label for="product" class="col-sm-3 text-right control-label col-form-label">Product</label>
+                                <label for="product" class="col-sm-3 text-right control-label col-form-label">Produk</label>
                                 <div class="col-sm-9">
                                     <select class="select2 form-control custom-select" style="width: 100%; height:36px;" name="product_id">
                                         <option> </option>
@@ -30,7 +30,7 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="amount" class="col-sm-3 text-right control-label col-form-label">Amount</label>
+                                <label for="amount" class="col-sm-3 text-right control-label col-form-label">Jumlah</label>
                                 <div class="col-sm-9">
                                     <input type="number" id="amount" name="amount" class="form-control {{ $errors->has('amount') ? 'is-invalid' : '' }}" placeholder="Stock amount" autofocus>
                                     @if ($errors->has('amount'))

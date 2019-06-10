@@ -15,11 +15,11 @@
                 <div class="card">
                     <form class="form-horizontal" method="POST" action="{{ route('customer.update', $customer->id)  }}">
                         <div class="card-body">
-                            <h4 class="card-title">Edit customer</h4>
+                            <h4 class="card-title">Edit Konsumen</h4>
                             @method('PATCH')
                             @csrf
                             <div class="form-group row">
-                                <label for="name" class="col-sm-3 text-right control-label col-form-label">Customer Name</label>
+                                <label for="name" class="col-sm-3 text-right control-label col-form-label">Nama Konsumen</label>
                                 <div class="col-sm-9">
                                     <input type="text" id="name" name="name" value="{{ $customer->name }}" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" placeholder="Customer name" autofocus>
                                     @if ($errors->has('name'))
@@ -30,7 +30,7 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="phone" class="col-sm-3 text-right control-label col-form-label">Phone number</label>
+                                <label for="phone" class="col-sm-3 text-right control-label col-form-label">No HP</label>
                                 <div class="col-sm-9">
                                     <input type="text" id="phone" name="phone" value="{{ $customer->phone_number }}" class="form-control {{ $errors->has('phone_number') ? 'is-invalid' : '' }}" placeholder="Phone number" autofocus>
                                     @if ($errors->has('phone_number'))

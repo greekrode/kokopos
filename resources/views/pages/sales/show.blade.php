@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card card-body printableArea">
-                    <h3><b>Sales</b> <span class="pull-right">{{ $sales->number }}</span></h3>
+                    <h3><b>Penjualan</b> <span class="pull-right">{{ $sales->number }}</span></h3>
                     <hr>
                     <div class="row">
                         <div class="col-md-12">
@@ -27,15 +27,9 @@
                             </div>
                             <div class="pull-right text-right">
                                 <address>
-                                    <h2>To, {{ $sales->customer->name }}</h2>
-                                    {{--<h4 class="font-bold">Gaala & Sons,</h4>--}}
-                                    {{--<p class="text-muted m-l-30">E 104, Dharti-2,--}}
-                                        {{--<br/> Nr' Viswakarma Temple,--}}
-                                        {{--<br/> Talaja Road,--}}
-                                        {{--<br/> Bhavnagar - 364002</p>--}}
-                                    <p class="m-t-30"><i class="fa fa-calendar"></i> <b>Sales Date :</b> {{ date('l, d/m/Y', strtotime($sales->created_at)) }}</p>
-                                    <p><i class="fa fa-clock"></i> <b>Sales Time :</b> {{ date('H:i:s', strtotime($sales->created_at)) }}</p>
-                                    {{--<p><b>Due Date :</b> <i class="fa fa-calendar"></i> 25th Jan 2018</p>--}}
+                                    <h2>Kepada, {{ $sales->customer->name }}</h2>
+                                    <p class="m-t-30"><i class="fa fa-calendar"></i> <b>Tgl Penjualan :</b> {{ date('l, d/m/Y', strtotime($sales->created_at)) }}</p>
+                                    <p><i class="fa fa-clock"></i> <b>Waktu Penjualan :</b> {{ date('H:i:s', strtotime($sales->created_at)) }}</p>
                                 </address>
                             </div>
                         </div>
@@ -45,9 +39,9 @@
                                     <thead>
                                     <tr>
                                         <th class="text-center">#</th>
-                                        <th>Product Name</th>
-                                        <th class="text-right">Product Quantity</th>
-                                        <th class="text-right">Product Price</th>
+                                        <th>Nama Produk</th>
+                                        <th class="text-right">Qty Produk</th>
+                                        <th class="text-right">Harga Produk</th>
                                         <th class="text-right">Subtotal</th>
                                     </tr>
                                     </thead>
@@ -73,15 +67,14 @@
                         </div>
                         <div class="col-md-12">
                             <div class="pull-right m-t-30 text-right">
-                                <p>Subtotal amount: Rp {{ number_format($grandTotal, 0 ,',', '.') }}</p>
-                                <p>Tax (0%) : Rp 0 </p>
+                                <p>Sub total: Rp {{ number_format($grandTotal, 0 ,',', '.') }}</p>
+                                <!-- <p>Pajak (0%) : Rp 0 </p> -->
                                 <hr>
                                 <h3><b>Total :</b> Rp {{ number_format($grandTotal, 0 ,',', '.') }}</h3>
                             </div>
                             <div class="clearfix"></div>
                             <hr>
                             <div class="text-right">
-                                {{--<button class="btn btn-danger" type="submit"> Proceed to payment </button>--}}
                             </div>
                         </div>
                     </div>

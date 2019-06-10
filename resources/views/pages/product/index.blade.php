@@ -14,9 +14,9 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h3 class="card-title float-left mb-3">Product Data</h3>
+                        <h3 class="card-title float-left mb-3">Data Produk</h3>
                         @if (Auth::user()->role === 'admin')
-                            <a class="card-title btn btn-primary float-right mb-3" href="{{ route('product.create') }}"><i class="mdi mdi-plus"></i> Add New</a>
+                            <a class="card-title btn btn-primary float-right mb-3" href="{{ route('product.create') }}"><i class="mdi mdi-plus"></i> Tambah Data</a>
                         @endif
                         <div class="table-responsive">
                             @if (session('success'))
@@ -32,13 +32,13 @@
                                 <thead class="thead-dark">
                                     <tr>
                                         <th class="font-22 font-bold">ID</th>
-                                        <th class="font-22 font-bold">Name</th>
-                                        <th class="font-22 font-bold">Capital Price</th>
-                                        <th class="font-22 font-bold">Selling Price</th>
-                                        <th class="font-22 font-bold">Stock</th>
-                                        <th class="font-22 font-bold">Image</th>
-                                        <th class="font-22 font-bold">Category</th>
-                                        <th class="font-22 font-bold">Action</th>
+                                        <th class="font-22 font-bold">Nama</th>
+                                        <th class="font-22 font-bold">Harga Modal</th>
+                                        <th class="font-22 font-bold">Harga Jual</th>
+                                        <th class="font-22 font-bold">Stok</th>
+                                        <th class="font-22 font-bold">Gambar</th>
+                                        <th class="font-22 font-bold">Kategori</th>
+                                        <th class="font-22 font-bold">Aksi</th>
                                     </tr>
                                 </thead>
                             </table>

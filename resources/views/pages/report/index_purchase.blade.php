@@ -15,35 +15,35 @@
                 <div class="card">
                     <form class="form-horizontal" method="POST" action="{{ route('report.create.purchase')  }}">
                         <div class="card-body">
-                            <h4 class="card-title">Report Filter</h4>
+                            <h4 class="card-title">Filter Laporan</h4>
                             @csrf
                             <div class="form-group row" id="filter">
                                 <label for="filter" class="col-sm-3 text-right control-label col-form-label">Filter</label>
                                 <div class="col-sm-9">
                                     <select class="select2 form-control custom-select" style="width: 100%; height:36px;" name="filter" onchange="showFilter()">
                                         <option selected value=''>--Select Filter--</option>
-                                        <option value="daily">Daily</option>
-                                        <option value="monthly">Monthly</option>
+                                        <option value="daily">Harian</option>
+                                        <option value="monthly">Bulanan</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group row" id="month" style="visibility: hidden;">
-                                <label for="month" class="col-sm-3 text-right control-label col-form-label">Month</label>
+                                <label for="month" class="col-sm-3 text-right control-label col-form-label">Bulan</label>
                                 <div class="col-sm-9">
                                     <select class="select2 form-control custom-select" style="width: 100%; height:36px;" name="month">
                                         <option selected value=''>--Select Month--</option>
-                                        <option value='1'>Januaory</option>
-                                        <option value='2'>February</option>
-                                        <option value='3'>March</option>
+                                        <option value='1'>Januari</option>
+                                        <option value='2'>Februari</option>
+                                        <option value='3'>Maret</option>
                                         <option value='4'>April</option>
-                                        <option value='5'>May</option>
-                                        <option value='6'>June</option>
-                                        <option value='7'>July</option>
-                                        <option value='8'>August</option>
+                                        <option value='5'>Mei</option>
+                                        <option value='6'>Juni</option>
+                                        <option value='7'>Juli</option>
+                                        <option value='8'>Agustus</option>
                                         <option value='9'>September</option>
-                                        <option value='10'>October</option>
+                                        <option value='10'>Oktober</option>
                                         <option value='11'>November</option>
-                                        <option value='12'>December</option>
+                                        <option value='12'>Deember</option>
                                     </select>
                                 </div>
                             </div>
