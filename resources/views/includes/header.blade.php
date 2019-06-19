@@ -14,7 +14,7 @@
                 <b class="logo-icon p-l-10">
                     <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                     <!-- Dark Logo icon -->
-                    <img src="{{ asset('images/images/logo-icon.png') }}" alt="homepage" class="light-logo" />
+                    <img src="https://imgur.com/FRWBtQP.jpg" alt="homepage" class="light-logo" width="30" height="30" />
 
                 </b>
                 <!--End Logo icon -->
