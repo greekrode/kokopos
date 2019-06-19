@@ -15,7 +15,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h3 class="card-title float-left mb-3">Sales Data</h3>
-                        <a class="card-title btn btn-primary float-right mb-3" href="{{ route('sales.create') }}"><i class="mdi mdi-plus"></i> Tambah Data</a>
+                        <a class="card-title btn btn-primary float-right mb-3" href="{{ route('input.penjualan') }}"><i class="mdi mdi-plus"></i> Tambah Data</a>
                         <div class="table-responsive">
                             @if (session('success'))
                                 <div class="alert alert-success" role="alert">

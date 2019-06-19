@@ -49,11 +49,11 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::resource('sales', 'SaleController',[
         'names' => [
-            'index'     => 'sales',
+            'index'     => 'penjualan',
             'store'     => 'sales.store',
             'edit'      => 'sales.edit',
             'show'      => 'sales.show',
-            'create'    => 'sales.create',
+            'create'    => 'input.penjualan',
             'update'    => 'sales.update',
             'destroy'   => 'sales.destroy'
         ]

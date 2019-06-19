@@ -114,7 +114,7 @@
             </div>
             <!-- Column -->
             <div class="col-md-6 col-lg-4 col-xlg-3">
-                <a href="{{ route('sales') }}">
+                <a href="{{ route('penjualan') }}">
                 <div class="card card-hover">
                     <div class="box bg-danger text-center">
                         <h1 class="font-light text-white"><i class="mdi mdi-cart"></i></h1>
