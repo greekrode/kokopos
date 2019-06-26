@@ -15,7 +15,7 @@ class SearchController extends Controller
             return \Response::json([]);
         }
 
-        $products = Product::search($term)->get();
+        $products = Product::where('name', 'like', '%'.$term.'%')->get();
 
         $formatted_products = [];
         $loop = 1;

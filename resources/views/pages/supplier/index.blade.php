@@ -31,6 +31,8 @@
                                 <tr>
                                     <th class="font-22 font-bold">ID</th>
                                     <th class="font-22 font-bold">Nama</th>
+                                    <th class="font-22 font-bold">Contact person</th>
+                                    <th class="font-22 font-bold">Alamat</th>
                                     <th class="font-22 font-bold">Aksi</th>
                                 </tr>
                                 </thead>
@@ -66,6 +68,8 @@
             columns: [
                 { data: 'rownum', name: 'rownum', searchable: false},
                 { data: 'name', name: 'name' },
+                { data: 'contact_person', name: 'contact_person' },
+                { data: 'address', name: 'address' },
                 { data: 'action', name: 'action', orderable: false, searchable: false}
             ]
         });

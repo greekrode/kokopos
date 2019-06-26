@@ -134,6 +134,8 @@ class DatatableController extends Controller
                 DB::raw('@rownum  := @rownum  + 1 AS rownum'),
                 'id',
                 'name',
+                'contact_person',
+                'address'
             ]);
 
         return Datatables::of($suppliers)

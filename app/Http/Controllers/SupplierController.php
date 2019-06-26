@@ -37,6 +37,8 @@ class SupplierController extends Controller
     {
         $supplier = new Supplier();
         $supplier->name = $request->name;
+        $supplier->contact_person = $request->contact_person;
+        $supplier->address = $request->address;
         $supplier->save();
 
         return redirect()->action('SupplierController@index')->with('success', sprintf('%s', 'Supplier '. $supplier->name.' has been added!'));
@@ -77,6 +79,8 @@ class SupplierController extends Controller
     {
         $supplier = Supplier::find($id);
         $supplier->name = $request->name;
+        $supplier->contact_person = $request->contact_person;
+        $supplier->address = $request->address;
         $supplier->save();
 
         return redirect()->action('SupplierController@index')->with('success', sprintf('%s', 'Supplier '. $supplier->name.' has been updated!'));

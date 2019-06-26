@@ -14,14 +14,14 @@
 <!--This page JavaScript -->
 <!-- <script src="../../dist/js/pages/dashboards/dashboard1.js') }}"></script> -->
 <!-- Charts js Files -->
-<script src="{{ asset('libs/flot/excanvas.js') }}"></script>
+<!-- <script src="{{ asset('libs/flot/excanvas.js') }}"></script>
 <script src="{{ asset('libs/flot/jquery.flot.js') }}"></script>
 <script src="{{ asset('libs/flot/jquery.flot.pie.js') }}"></script>
 <script src="{{ asset('libs/flot/jquery.flot.time.js') }}"></script>
 <script src="{{ asset('libs/flot/jquery.flot.stack.js') }}"></script>
 <script src="{{ asset('libs/flot/jquery.flot.crosshair.js') }}"></script>
 <script src="{{ asset('libs/flot.tooltip/js/jquery.flot.tooltip.min.js') }}"></script>
-<script src="{{ asset('js/pages/chart/chart-page-init.js') }}"></script>
+<script src="{{ asset('js/pages/chart/chart-page-init.js') }}"></script> -->
 <!-- Data tables -->
 <script src="{{ asset('extra-libs/multicheck/datatable-checkbox-init.js') }}"></script>
 <script src="{{ asset('extra-libs/multicheck/jquery.multicheck.js') }}"></script>
@@ -34,12 +34,12 @@
 <script src="{{ asset('js/pages/mask/mask.init.js') }}"></script>
 <script src="{{ asset('libs/select2/dist/js/select2.full.min.js') }}"></script>
 <script src="{{ asset('libs/select2/dist/js/select2.min.js') }}"></script>
-<script src="{{ asset('libs/jquery-asColor/dist/jquery-asColor.min.js') }}"></script>
-<script src="{{ asset('libs/jquery-asGradient/dist/jquery-asGradient.js') }}"></script>
-<script src="{{ asset('libs/jquery-asColorPicker/dist/jquery-asColorPicker.min.js') }}"></script>
-<script src="{{ asset('libs/jquery-minicolors/jquery.minicolors.min.js') }}"></script>
+<!-- <script src="{{ asset('libs/jquery-asColor/dist/jquery-asColor.min.js') }}"></script> -->
+<!-- <script src="{{ asset('libs/jquery-asGradient/dist/jquery-asGradient.js') }}"></script> -->
+<!-- <script src="{{ asset('libs/jquery-asColorPicker/dist/jquery-asColorPicker.min.js') }}"></script>
+<script src="{{ asset('libs/jquery-minicolors/jquery.minicolors.min.js') }}"></script> -->
 <script src="{{ asset('libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"></script>
-<script src="{{ asset('libs/quill/dist/quill.min.js') }}"></script>
+<!-- <script src="{{ asset('libs/quill/dist/quill.min.js') }}"></script> -->
 <script src="{{ asset('js/ajaxlivesearch.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 <script src="{{ asset('libs/toastr/build/toastr.min.js') }}"></script>
