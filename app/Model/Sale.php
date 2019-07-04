@@ -9,7 +9,7 @@ class Sale extends Model
     protected $table = 'sales';
 
     protected $fillable = [
-        'number', 'total', 'customer_id'
+        'number', 'total', 'customer_id', 'user_id'
     ];
 
     protected $guarded = [
@@ -26,8 +26,13 @@ class Sale extends Model
         return $this->belongsTo(Customer::class);
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function scopeInfo($query)
     {
-        return $query->with('customer');
+        return $query->with('customer', 'user');
     }
 }

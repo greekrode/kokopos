@@ -65,6 +65,7 @@ class SaleController extends Controller
         $sales->number = $request->salesNumber;
         $sales->total = $request->salesTotal;
         $sales->customer_id = $request->salesCustomer;
+        $sales->user_id = Auth::user()->id;
 
         if (!$sales->save()) {
             \Session::flash('success', sprintf('%s', 'Sales number '.$request->salesNumber.' can not be created!'));

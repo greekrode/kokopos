@@ -17,6 +17,7 @@ use App\Model\Stock;
 use function foo\func;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Facades\Auth;
 
 class DatatableController extends Controller
 {
@@ -84,8 +85,9 @@ class DatatableController extends Controller
                 'id',
                 'name',
                 'selling_price',
-                'image'
-            ])->where('id', '=', $id);
+                'image',
+                'user_id'
+            ])->where('id', '=', $id)->where('user_id', '=', Auth::user()->id);
 
         return Datatables::of($sales)
             ->addColumn('action', function ($sales) {
