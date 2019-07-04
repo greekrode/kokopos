@@ -35,7 +35,7 @@
                                         <th class="font-22 font-bold">Total</th>
                                         <th class="font-22 font-bold">Konsumen</th>
                                         @if (Auth::user()->role === 'admin')
-                                            <th class="font-22 font-bold">Cashier</th>
+                                            <th class="font-22 font-bold">Pengguna</th>
                                         @endif
                                         <th class="font-22 font-bold">Aksi</th>
                                     </tr>
