@@ -14,6 +14,9 @@
             <div class="col-md-12">
                 <div class="card card-body printableArea">
                     <h3><b>Penjualan</b> <span class="pull-right">{{ $sales->number }}</span></h3>
+                    @if (Auth::user()->type === 'admin')
+                        <span class="pull-left"> <small>Created by: {{ $sales->user->name }}</small></span>
+                    @endif
                     <hr>
                     <div class="row">
                         <div class="col-md-12">

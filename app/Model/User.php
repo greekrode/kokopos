@@ -27,4 +27,19 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Create new user.
+     *
+     * @param array $details
+     * @return array
+     */
+    public function createNewUser(array $details) : self
+    {
+        $user = new self($details);
+        $user->role = 'user';
+        $user->save();
+        
+        return $user;
+    }
 }
