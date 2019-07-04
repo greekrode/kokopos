@@ -34,6 +34,9 @@
                                         <th class="font-22 font-bold">Tanggal</th>
                                         <th class="font-22 font-bold">Total</th>
                                         <th class="font-22 font-bold">Konsumen</th>
+                                        @if (Auth::user()->role === 'admin')
+                                            <th class="font-22 font-bold">Cashier</th>
+                                        @endif
                                         <th class="font-22 font-bold">Aksi</th>
                                     </tr>
                                 </thead>
@@ -60,22 +63,45 @@
     <!-- ============================================================== -->
 @endsection
 
-@push('scripts')
-    <script>
-        var table = $('#zero_config').DataTable({
-            responsive: true,
-            processing: true,
-            serverSide: true,
-            order: [[2, "desc"]],
-            ajax: '{!! route('datatable.sales') !!}',
-            columns: [
-                { data: 'rownum', name: 'rownum', searchable: false },
-                { data: 'number', name: 'number' },
-                { data: 'created_at', name: 'created_at' },
-                { data: 'total', name: 'total', render: $.fn.dataTable.render.number( '.', ',', 0, 'Rp ' )},
-                { data: 'customer.name', name: 'customer.name' },
-                { data: 'action', name: 'action', orderable: false, searchable: false }
-            ],
-        });
-    </script>
-@endpush
+@if (Auth::user()->role === 'admin')
+    @push('scripts')
+        <script>
+            var table = $('#zero_config').DataTable({
+                responsive: true,
+                processing: true,
+                serverSide: true,
+                order: [[2, "desc"]],
+                ajax: '{!! route('datatable.sales') !!}',
+                columns: [
+                    { data: 'rownum', name: 'rownum', searchable: false },
+                    { data: 'number', name: 'number' },
+                    { data: 'created_at', name: 'created_at' },
+                    { data: 'total', name: 'total', render: $.fn.dataTable.render.number( '.', ',', 0, 'Rp ' )},
+                    { data: 'customer.name', name: 'customer.name' },
+                    { data: 'user.name', name: 'user.name' },
+                    { data: 'action', name: 'action', orderable: false, searchable: false }
+                ],
+            });
+        </script>
+    @endpush
+@else
+    @push('scripts')
+        <script>
+            var table = $('#zero_config').DataTable({
+                responsive: true,
+                processing: true,
+                serverSide: true,
+                order: [[2, "desc"]],
+                ajax: '{!! route('datatable.sales') !!}',
+                columns: [
+                    { data: 'rownum', name: 'rownum', searchable: false },
+                    { data: 'number', name: 'number' },
+                    { data: 'created_at', name: 'created_at' },
+                    { data: 'total', name: 'total', render: $.fn.dataTable.render.number( '.', ',', 0, 'Rp ' )},
+                    { data: 'customer.name', name: 'customer.name' },
+                    { data: 'action', name: 'action', orderable: false, searchable: false }
+                ],
+            });
+        </script>
+    @endpush
+@endif

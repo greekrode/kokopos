@@ -64,7 +64,11 @@ class DatatableController extends Controller
     public function sales()
     {
         DB::statement(DB::raw('set @rownum=0'));
-        $sales = Sale::info()->select(['sales.*', DB::raw('@rownum  := @rownum  + 1 AS rownum')]);
+        if (Auth::user()->role === 'admin') {
+            $sales = Sale::info()->select(['sales.*', DB::raw('@rownum  := @rownum  + 1 AS rownum')]);
+        } else {
+            $sales = Sale::info()->select(['sales.*', DB::raw('@rownum  := @rownum  + 1 AS rownum')])->where('user_id', '=', Auth::user()->id);
+        }
 
         return Datatables::of($sales)
             ->addColumn('action', function ($sales) {
@@ -86,8 +90,7 @@ class DatatableController extends Controller
                 'name',
                 'selling_price',
                 'image',
-                'user_id'
-            ])->where('id', '=', $id)->where('user_id', '=', Auth::user()->id);
+            ])->where('id', '=', $id);
 
         return Datatables::of($sales)
             ->addColumn('action', function ($sales) {
