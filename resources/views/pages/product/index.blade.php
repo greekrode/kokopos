@@ -38,7 +38,9 @@
                                         <th class="font-22 font-bold">Stok</th>
                                         <th class="font-22 font-bold">Gambar</th>
                                         <th class="font-22 font-bold">Kategori</th>
-                                        <th class="font-22 font-bold">Aksi</th>
+                                        @if(Auth::user()->role === 'admin')
+                                            <th class="font-22 font-bold">Aksi</th>
+                                        @endif
                                     </tr>
                                 </thead>
                             </table>
@@ -64,30 +66,59 @@
     <!-- ============================================================== -->
 @endsection
 
-@push('scripts')
-    <script>
-        var table = $('#zero_config').DataTable({
-            responsive: true,
-            processing: true,
-            serverSide: true,
-            ajax: '{!! route('datatable.product') !!}',
-            columns: [
-                { data: 'rownum', name: 'rownum', searchable: false },
-                { data: 'name', name: 'name' },
-                { data: 'capital_price', name: 'capital_price', render: $.fn.dataTable.render.number( '.', ',', 0, 'Rp ' ) },
-                { data: 'selling_price', name: 'selling_price', render: $.fn.dataTable.render.number( '.', ',', 0, 'Rp ' ) },
-                { data: 'stock.stock', name: 'stock.stock', "defaultContent": "0" },
-                {
-                    data: 'image', name: 'image',
-                    render: function (data, type, row) {
-                        return "<img src=\"/uploads/" + data + "\" width=\"150\"/>";
+@if (Auth::user()->role === 'admin')
+    @push('scripts')
+        <script>
+            var table = $('#zero_config').DataTable({
+                responsive: true,
+                processing: true,
+                serverSide: true,
+                ajax: '{!! route('datatable.product') !!}',
+                columns: [
+                    { data: 'rownum', name: 'rownum', searchable: false },
+                    { data: 'name', name: 'name' },
+                    { data: 'capital_price', name: 'capital_price', render: $.fn.dataTable.render.number( '.', ',', 0, 'Rp ' ) },
+                    { data: 'selling_price', name: 'selling_price', render: $.fn.dataTable.render.number( '.', ',', 0, 'Rp ' ) },
+                    { data: 'stock.stock', name: 'stock.stock', "defaultContent": "0" },
+                    {
+                        data: 'image', name: 'image',
+                        render: function (data, type, row) {
+                            return "<img src=\"/uploads/" + data + "\" width=\"150\"/>";
+                        },
+                        searchable: false,
+                        orderable: false
                     },
-                    searchable: false,
-                    orderable: false
-                },
-                { data: 'category.name', name: 'category.name'},
-                { data: 'action', name: 'action', orderable: false, searchable: false }
-            ]
-        });
-    </script>
-@endpush
+                    { data: 'category.name', name: 'category.name'},
+                    { data: 'action', name: 'action', orderable: false, searchable: false }
+                ]
+            });
+        </script>
+    @endpush
+@else
+    @push('scripts')
+        <script>
+            var table = $('#zero_config').DataTable({
+                responsive: true,
+                processing: true,
+                serverSide: true,
+                ajax: '{!! route('datatable.product') !!}',
+                columns: [
+                    { data: 'rownum', name: 'rownum', searchable: false },
+                    { data: 'name', name: 'name' },
+                    { data: 'capital_price', name: 'capital_price', render: $.fn.dataTable.render.number( '.', ',', 0, 'Rp ' ) },
+                    { data: 'selling_price', name: 'selling_price', render: $.fn.dataTable.render.number( '.', ',', 0, 'Rp ' ) },
+                    { data: 'stock.stock', name: 'stock.stock', "defaultContent": "0" },
+                    {
+                        data: 'image', name: 'image',
+                        render: function (data, type, row) {
+                            return "<img src=\"/uploads/" + data + "\" width=\"150\"/>";
+                        },
+                        searchable: false,
+                        orderable: false
+                    },
+                    { data: 'category.name', name: 'category.name'},
+                ]
+            });
+        </script>
+    @endpush
+@endif

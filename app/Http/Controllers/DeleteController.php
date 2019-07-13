@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Model\Sale;
 use App\Model\SalesDetail;
+use App\Model\Stock;
 use App\Model\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
